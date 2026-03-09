@@ -5,6 +5,12 @@
 	--off-white: #fafaf8;
 	--border-subtle: #e0e0e0;
 }
+
+html {
+	min-height: 100%;
+	min-height: 100dvh;
+	overflow-x: hidden;
+}
 @font-face {
 	font-family: "Atkinson";
 	src: url("/fonts/atkinson-regular.woff") format("woff");
@@ -30,6 +36,7 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 1rem;
 	line-height: 1.7;
+	overflow-x: hidden;
 }
 main {
 	width: 720px;

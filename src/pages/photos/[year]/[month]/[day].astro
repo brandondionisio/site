@@ -75,10 +75,12 @@ const nextHref = nextDateStr
 				`Photo of the day for ${monthName} ${day}, ${year}`}
 		/>
 	</head>
-	<body class="bg-[var(--off-white)] min-h-screen flex flex-col">
+	<body
+		class="bg-[var(--off-white)] min-h-screen flex flex-col overflow-x-hidden"
+	>
 		<Nav currentPath={Astro.url.pathname} />
 		<main
-			class="max-w-4xl mx-auto px-4 pt-24 lg:pt-12 pb-16 flex-1 flex flex-col justify-center lg:justify-center"
+			class="w-full max-w-4xl mx-auto px-4 pt-24 lg:pt-12 pb-16 flex-1 flex flex-col justify-center min-h-[100dvh] min-w-0"
 		>
 			<header class="mb-6">
 				<div class="flex flex-row justify-between items-center">
