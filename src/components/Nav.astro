@@ -1,0 +1,64 @@
+---
+import { AUTHOR_NAME } from "../consts";
+
+interface Props {
+	currentPath?: string;
+}
+
+const { currentPath = "" } = Astro.props;
+const normalizedPath = currentPath.replace(/\/$/, "") || "/";
+
+const navLinks = [
+	{ label: "Home", href: "/" },
+	{ label: "Blog", href: "/blog" },
+	{ label: "Photos", href: "/photos" },
+];
+
+function isActive(href: string) {
+	const normalizedHref = href.replace(/\/$/, "") || "/";
+	return (
+		normalizedPath === normalizedHref ||
+		normalizedPath.startsWith(normalizedHref + "/")
+	);
+}
+---
+
+<nav
+	id="site-nav"
+	class="fixed top-0 left-0 right-0 z-50 lg:right-auto lg:w-auto w-full px-4 py-4 lg:p-6 flex flex-row lg:flex-col lg:items-start items-center justify-between lg:justify-start bg-white/95 lg:bg-transparent border-b border-gray-300 lg:border-b-0"
+	aria-label="Main navigation"
+>
+	<div
+		class="block text-xl font-bold text-[#2d2d2d] lg:mb-2 no-underline transition-opacity duration-200"
+	>
+		{AUTHOR_NAME}
+	</div>
+	<ul
+		class="flex flex-row lg:flex-col gap-6 lg:gap-0 list-none m-0 p-0 [&_a]:leading-snug [&_span]:leading-snug"
+	>
+		{
+			navLinks.map((link) => {
+				const active = isActive(link.href);
+				return (
+					<li>
+						{active ? (
+							<span
+								class="block font-normal text-lg text-[#2d2d2d] underline cursor-default leading-tight"
+								aria-current="page"
+							>
+								{link.label}
+							</span>
+						) : (
+							<a
+								href={link.href}
+								class="block font-normal text-lg text-[#2d2d2d] no-underline transition-opacity duration-200 hover:opacity-70 leading-tight"
+							>
+								{link.label}
+							</a>
+						)}
+					</li>
+				);
+			})
+		}
+	</ul>
+</nav>

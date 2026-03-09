@@ -1,0 +1,46 @@
+name: Sync photos from Drive
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env
+        env:
+          GCP_CLIENT_ID: ${{ secrets.GCP_CLIENT_ID }}
+          GCP_CLIENT_SECRET: ${{ secrets.GCP_CLIENT_SECRET }}
+          GCP_REFRESH_TOKEN: ${{ secrets.GCP_REFRESH_TOKEN }}
+          DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
+        run: |
+          echo "GCP_CLIENT_ID=$GCP_CLIENT_ID" >> .env
+          echo "GCP_CLIENT_SECRET=$GCP_CLIENT_SECRET" >> .env
+          echo "GCP_REFRESH_TOKEN=$GCP_REFRESH_TOKEN" >> .env
+          echo "DRIVE_FOLDER_ID=$DRIVE_FOLDER_ID" >> .env
+
+      - name: Sync photos from Drive
+        run: npm run photos:sync
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/dailyPhotos.json public/photos/
+          git diff --staged --quiet || (git commit -m "chore: sync photos from Drive" && git push)

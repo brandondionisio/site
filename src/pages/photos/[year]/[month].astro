@@ -1,0 +1,151 @@
+---
+import BaseHead from "../../../components/BaseHead.astro";
+import Nav from "../../../components/Nav.astro";
+import { AUTHOR_NAME, SITE_TITLE } from "../../../consts";
+import {
+	getCalendarMonth,
+	getPhotosByDate,
+	getMonthsWithPhotos,
+	getPreviousNextMonth,
+} from "../../../data/photoOfTheDay";
+
+export async function getStaticPaths() {
+	const months = getMonthsWithPhotos();
+	return months.map(({ year, month }) => ({
+		params: { year: String(year), month: String(month) },
+	}));
+}
+
+const { year: yearStr, month: monthStr } = Astro.params;
+const year = Number(yearStr);
+const month = Number(monthStr);
+
+const calendar = getCalendarMonth(year, month);
+const photosByDate = getPhotosByDate();
+const { prev, next } = getPreviousNextMonth(year, month);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`${calendar.monthName} ${year} | Photos | ${SITE_TITLE}`}
+			description="Photo of the Day"
+		/>
+	</head>
+	<body class="bg-[var(--off-white)] min-h-screen flex flex-col">
+		<Nav currentPath={Astro.url.pathname} />
+		<main
+			class="max-w-4xl mx-auto px-4 py-10 pb-16 flex-1 flex flex-col justify-center"
+		>
+			<header class="mb-8">
+				<h1
+					class="text-center font-mono text-primary text-xl font-semibold m-0 mb-1"
+				>
+					Photo of the Day
+				</h1>
+				<p class="text-center font-mono text-secondary text-sm m-0">
+					A project by {AUTHOR_NAME}.
+				</p>
+			</header>
+
+			<section class="font-mono">
+				<div class="flex items-center justify-between gap-4 mb-4">
+					{
+						prev ? (
+							<a
+								href={`/photos/${prev.year}/${prev.month}`}
+								class="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-[var(--border-subtle)] text-primary no-underline hover:bg-[var(--off-white)] transition-colors"
+								aria-label={`Previous month: ${prev.year}-${String(prev.month).padStart(2, "0")}`}
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+								>
+									<path d="M15 18l-6-6 6-6" />
+								</svg>
+							</a>
+						) : (
+							<span class="w-10" />
+						)
+					}
+					<h2 class="text-lg font-bold text-primary m-0 flex-1 text-center">
+						{calendar.monthName}
+						{calendar.year}
+					</h2>
+					{
+						next ? (
+							<a
+								href={`/photos/${next.year}/${next.month}`}
+								class="flex items-center justify-center w-10 h-10 rounded-full bg-white border border-[var(--border-subtle)] text-primary no-underline hover:bg-[var(--off-white)] transition-colors"
+								aria-label={`Next month: ${next.year}-${String(next.month).padStart(2, "0")}`}
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="20"
+									height="20"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+								>
+									<path d="M9 18l6-6-6-6" />
+								</svg>
+							</a>
+						) : (
+							<span class="w-10" />
+						)
+					}
+				</div>
+
+				<div
+					class="grid grid-cols-7 gap-px bg-[var(--border-subtle)] overflow-hidden border border-[var(--border-subtle)]"
+				>
+					{
+						calendar.dayLabels.map((label) => (
+							<div class="bg-white p-2 text-center text-xs font-semibold text-secondary">
+								{label}
+							</div>
+						))
+					}
+					{
+						calendar.weeks.map((week) =>
+							week.map((cell) => {
+								const photo = cell ? photosByDate.get(cell.dateStr) : null;
+								return (
+									<div class="aspect-square bg-white min-h-[80px] flex items-center justify-center overflow-hidden">
+										{cell && photo ? (
+											<a
+												href={`/photos/${year}/${month}/${cell.day}`}
+												class="block w-full h-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+											>
+												<img
+													src={photo.src}
+													alt={photo.alt ?? `Photo for ${cell.dateStr}`}
+													class="w-full h-full object-cover"
+												/>
+											</a>
+										) : cell ? (
+											<span class="text-xs text-secondary/60">{cell.day}</span>
+										) : null}
+									</div>
+								);
+							}),
+						)
+					}
+				</div>
+			</section>
+		</main>
+	</body>
+</html>

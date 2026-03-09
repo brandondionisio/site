@@ -6,13 +6,19 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "photos:sync": "node scripts/syncPhotosFromDrive.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.15",
     "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.17.1",
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.3",
+    "tailwindcss": "^3.4.19"
+  },
+  "devDependencies": {
+    "googleapis": "^144.0.0"
   }
 }

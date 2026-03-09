@@ -1,0 +1,104 @@
+---
+const education = [
+	{
+		title: "Tufts University",
+		description: "Majors: Computer Science and Cognitive Brain Science",
+		link: "https://www.tufts.edu/",
+		date: "September 2022 - February 2026",
+	},
+];
+
+const projects = [
+	{
+		title: "SART React",
+		description:
+			"Conducted a study on the effectiveness of image valence on attention using a web app with a modified SART implementation.",
+		link: "https://sart-react.vercel.app/",
+		date: "October 2025 - December 2025",
+	},
+	{
+		title: "Health Chatbot",
+		description:
+			"AI-powered health assistant chatbot that provides personalized health insights using real-time streaming responses, semantic search for context retrieval, and rich markdown rendering for health data analysis",
+		link: "https://www.youtube.com/watch?v=-nIOfVY96LE&feature=youtu.be",
+		date: "June 2025 - September 2025",
+	},
+	{
+		title: "Better Email",
+		description:
+			"AI-powered email generation tool that leverages Google Gemini and Verifalia API to create professional and available email addresses.",
+		link: "https://betteremail.vercel.app/",
+		date: "June 2025",
+	},
+	{
+		title: "LCS Tutoring",
+		description:
+			"Spearheaded the creation of a full-stack web app for LCS Tutoring, an on-campus Tufts organization that pairs K-12 tutees with Tufts student tutors.",
+		link: "https://lcstutoring.vercel.app/",
+		date: "October 2024 - May 2025",
+	},
+	{
+		title: "Beacon Creamery",
+		description:
+			"Website for the Beacon Creamery, a local ice cream shop that I grew up going to and had the pleasure of working at for a few years.",
+		link: "https://beaconcreamery.com/",
+		date: "June 2024 - Present",
+	},
+	{
+		title: "Discord Anagrams Bot",
+		description:
+			'Discord bot that replicates the iOS "Anagrams" game, helping over 600 players practice targeted anagram sets. Carries out several variations of the game.',
+		link: "https://discord.com/api/oauth2/authorize?client_id=1087879093355302932&permissions=1634235578432&scope=bot",
+		date: "March 2023 - June 2025",
+	},
+];
+---
+
+<section class="space-y-8 mt-10">
+	<div>
+		<h2 class="text-[1.5rem] font-bold text-primary mb-4">Education</h2>
+		<ul class="list-disc list-outside pl-6 m-0">
+			{
+				education.map((item) => (
+					<li class="text-secondary">
+						<div class="flex flex-row items-baseline gap-2 flex-wrap">
+							<a
+								href={item.link}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="font-semibold no-underline text-primary hover:text-[#db2777]"
+							>
+								{item.title}
+							</a>
+							|<span class="text-sm text-secondary/90">{item.date}</span>
+						</div>
+						<p class="m-0 mt-1 text-body">{item.description}</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+	<div>
+		<h2 class="text-[1.5rem] font-bold text-primary mb-4">Projects</h2>
+		<ul class="list-disc list-outside pl-6 m-0">
+			{
+				projects.map((project) => (
+					<li class="text-secondary">
+						<div class="flex flex-row items-baseline gap-2 flex-wrap">
+							<a
+								href={project.link}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="font-semibold no-underline text-primary hover:text-[#db2777]"
+							>
+								{project.title}
+							</a>
+							|<span class="text-sm text-secondary/90">{project.date}</span>
+						</div>
+						<p class="m-0 mt-1 text-body">{project.description}</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
