@@ -17,6 +17,6 @@ const { Content } = await render(post);
 ---
 
 <BlogPost {...post.data}>
-	<Nav currentPath={Astro.url.pathname} />
+	<Nav slot="nav" currentPath={Astro.url.pathname} />
 	<Content />
 </BlogPost>
