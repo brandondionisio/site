@@ -1,15 +1,9 @@
 ---
-import { getCollection } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
-// import Footer from "../components/Footer.astro";
 import Nav from "../components/Nav.astro";
 import Content from "../components/home/Content.astro";
 import Hero from "../components/home/Hero.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-
-const posts = (await getCollection("blog")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
 ---
 
 <!doctype html>
@@ -21,7 +15,7 @@ const posts = (await getCollection("blog")).sort(
 		<Nav currentPath={Astro.url.pathname} />
 		<main class="w-full max-w-[760px] mx-auto px-6 py-10 pb-16 min-h-[60vh]">
 			<Hero />
-			<section class="mt-48 [&_p]:mb-4">
+			<section class="mt-40 [&_p]:mb-4">
 				<Content />
 			</section>
 		</main>
