@@ -8,6 +8,15 @@ export default {
 				secondary: 'var(--text-secondary)',
 				'off-white': 'var(--off-white)',
 			},
+			keyframes: {
+				pulsate: {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.10)' },
+				},
+			},
+			animation: {
+				pulsate: 'pulsate 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+			},
 		},
 	},
 	plugins: [],

@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Nav from "../components/Nav.astro";
 import Content from "../components/home/Content.astro";
 import Hero from "../components/home/Hero.astro";
+import MysteryButton from "../components/MysteryButton.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
@@ -13,6 +14,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 	</head>
 	<body>
 		<Nav currentPath={Astro.url.pathname} />
+		<MysteryButton />
 		<main class="w-full max-w-[760px] mx-auto px-6 py-10 pb-16 min-h-[60vh]">
 			<Hero />
 			<section class="mt-40 [&_p]:mb-4">
