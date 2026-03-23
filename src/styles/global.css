@@ -130,11 +130,9 @@ hr {
 }
 ::selection {
 	background: #eecacd;
-	color: #111827;
 }
 ::-moz-selection {
 	background: #eecacd;
-	color: #111827;
 }
 @media (max-width: 720px) {
 	body {
