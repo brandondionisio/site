@@ -24,7 +24,7 @@ const { title, description, pubDate, updatedDate, graphic } = Astro.props;
 		<main class="w-full max-w-full mx-0 lg:mt-0 mt-20">
 			<article>
 				<div
-					class="prose max-w-[55ch] mx-auto px-4 py-6 text-[rgb(var(--gray-dark))] [&_h2]:text-2xl [&_h2]:mt-8 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-4 [&_a]:text-[var(--accent)] [&_a]:underline [&_a:hover]:text-[#db2777] [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:my-4 [&_ul_li]:my-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mt-2 [&_ol]:mb-4 [&_ol_li]:my-1 [&_blockquote]:border-l-4 [&_blockquote]:border-[var(--accent)] [&_blockquote]:pl-4 [&_blockquote]:my-4 [&_blockquote]:text-[rgb(var(--gray))] [&_code]:bg-[rgb(var(--gray-light))] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_pre]:bg-[rgb(var(--gray-dark))] [&_pre]:text-white [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_pre]:my-4 [&_pre_code]:bg-transparent [&_pre_code]:p-0"
+					class="prose max-w-[55ch] mx-auto px-4 py-6 text-[rgb(var(--gray-dark))] [&_h2]:text-2xl [&_h2]:mt-8 [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:mt-6 [&_h3]:mb-2 [&_p]:mb-4 [&_a]:text-[var(--accent)] [&_a]:underline [&_a:hover]:text-[#db2777] [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mt-1 [&_ul]:mb-4 [&_ul_li]:my-1 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mt-1 [&_ol]:mb-4 [&_ol_li]:my-1 [&_blockquote]:border-l-4 [&_blockquote]:border-[var(--accent)] [&_blockquote]:pl-4 [&_blockquote]:my-4 [&_blockquote]:text-[rgb(var(--gray))] [&_code]:bg-[rgb(var(--gray-light))] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_pre]:bg-[rgb(var(--gray-dark))] [&_pre]:text-white [&_pre]:p-4 [&_pre]:rounded-lg [&_pre]:overflow-x-auto [&_pre]:my-4 [&_pre_code]:bg-transparent [&_pre_code]:p-0"
 				>
 					{
 						graphic && (
@@ -40,11 +40,11 @@ const { title, description, pubDate, updatedDate, graphic } = Astro.props;
 						)
 					}
 					<div class="mb-6 py-6 text-center leading-none">
-						<div class="mb-2 text-[rgb(var(--gray))] font-semibold opacity-40">
+						<div class="mb-2 font-semibold opacity-60">
 							<FormattedDate date={pubDate} />
 							{
 								updatedDate && (
-									<div class="italic mt-1">
+									<div class="italic mt-1 font-thin text-xs">
 										Last updated on <FormattedDate date={updatedDate} />
 									</div>
 								)

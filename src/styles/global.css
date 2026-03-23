@@ -86,7 +86,11 @@ p {
 	margin-bottom: 1em;
 }
 .prose p {
-	margin-bottom: 2em;
+	margin-bottom: 1.5em;
+}
+.prose p:has(+ ul),
+.prose p:has(+ ol) {
+	margin-bottom: 0.4em;
 }
 textarea {
 	width: 100%;
@@ -123,6 +127,14 @@ blockquote {
 hr {
 	border: none;
 	border-top: 1px solid rgb(var(--gray-light));
+}
+::selection {
+	background: #eecacd;
+	color: #111827;
+}
+::-moz-selection {
+	background: #eecacd;
+	color: #111827;
 }
 @media (max-width: 720px) {
 	body {
