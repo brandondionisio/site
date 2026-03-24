@@ -7,6 +7,7 @@ import {
 	getPreviousNextDay,
 	dailyPhotos,
 } from "../../../../data/photoOfTheDay";
+import MysteryButton from "../../../../components/MysteryButton.astro";
 
 const MONTH_NAMES = [
 	"January",
@@ -79,6 +80,7 @@ const nextHref = nextDateStr
 		class="bg-[var(--off-white)] min-h-screen flex flex-col overflow-x-hidden"
 	>
 		<Nav currentPath={Astro.url.pathname} />
+		<MysteryButton />
 		<main
 			class="w-full max-w-4xl mx-auto px-4 pt-24 lg:pt-12 pb-16 flex-1 flex flex-col justify-center min-h-[100dvh] min-w-0"
 		>

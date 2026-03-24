@@ -4,6 +4,7 @@ import BaseHead from "../../components/BaseHead.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Nav from "../../components/Nav.astro";
 import { SITE_DESCRIPTION, BLOG_TITLE } from "../../consts";
+import MysteryButton from "../../components/MysteryButton.astro";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -17,6 +18,7 @@ const posts = (await getCollection("blog")).sort(
 	</head>
 	<body>
 		<Nav currentPath={Astro.url.pathname} />
+		<MysteryButton />
 		<main
 			class="w-full max-w-[640px] mx-auto px-6 py-20 flex flex-col items-center"
 		>
@@ -27,7 +29,7 @@ const posts = (await getCollection("blog")).sort(
 							<li>
 								<a
 									href={`/blog/${post.id}/`}
-									class="block rounded-xl bg-[#f8f8f8] p-5 text-left no-underline border border-l-4 border-l-transparent border-[#ddd] shadow-sm hover:border-l-[#db2777] hover:border-[#e0e0e0] hover:shadow-lg hover:translate-y-[-2px] transition-all duration-200"
+									class="block rounded-xl bg-[#f8f8f8] dark:bg-zinc-800/90 p-5 text-left no-underline border border-l-4 border-l-transparent border-[#ddd] dark:border-zinc-600 shadow-sm hover:border-l-[#db2777] hover:border-[#e0e0e0] dark:hover:border-zinc-500 hover:shadow-lg hover:translate-y-[-2px] transition-all duration-200"
 								>
 									<div class="flex items-center gap-2 text-sm mb-2">
 										<svg

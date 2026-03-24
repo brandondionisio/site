@@ -3,26 +3,27 @@
 ---
 
 <div
-  class="pointer-events-none fixed top-0 right-0 z-50 flex justify-end p-4 lg:p-6"
+  class="pointer-events-none relative right-0 top-4 z-40 flex w-full justify-end px-4 pt-16 pb-2 lg:z-50 lg:fixed lg:left-auto lg:w-auto lg:p-5"
 >
-  <div class="pointer-events-auto relative size-11 shrink-0">
+  <div class="pointer-events-auto relative size-8 shrink-0">
     <button
+      id="mystery-button-trigger"
       type="button"
-      class="group relative size-11 shrink-0 cursor-pointer rounded-full border-0 bg-gradient-to-br from-neutral-400 to-neutral-600 p-0 shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_4px_14px_rgb(0_0_0/0.2)] outline-none transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] before:pointer-events-none before:absolute before:inset-[-3px] before:rounded-full before:bg-[conic-gradient(from_0deg,var(--accent,#db2777),transparent_32%,#a855f7,transparent_68%,var(--accent,#db2777))] before:p-0.5 before:opacity-0 before:transition-opacity before:duration-300 before:content-[''] before:[-webkit-mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[-webkit-mask-composite:xor] before:[mask-composite:exclude] hover:scale-[1.12] hover:-rotate-[8deg] hover:shadow-[inset_0_1px_0_rgb(255_255_255/0.45),0_10px_32px_rgb(219_39_119/0.35)] hover:before:opacity-100 hover:before:animate-mystery-spin focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent,#db2777)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--off-white,#fafaf8)] focus-visible:shadow-[0_10px_32px_rgb(219_39_119/0.25)] focus-visible:before:opacity-100 focus-visible:before:animate-mystery-spin active:scale-[0.94] active:rotate-0"
+      class="group relative size-8 shrink-0 cursor-pointer rounded-full border border-white/10 bg-slate-500 p-0 outline-none ring-1 ring-black/10 transition-[transform,box-shadow,filter] duration-200 ease-out before:pointer-events-none before:absolute before:inset-[-2px] before:rounded-full before:bg-[conic-gradient(from_200deg,#db2777,transparent_28%,#7c3aed,transparent_62%,var(--accent,#db2777))] before:p-px before:opacity-0 before:transition-opacity before:duration-200 before:content-[''] before:[-webkit-mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[-webkit-mask-composite:xor] before:[mask-composite:exclude] hover:scale-105 hover:border-white/25 hover:shadow-md hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent,#db2777)] focus-visible:ring-offset-1 focus-visible:ring-offset-[var(--off-white,#fafaf8)] dark:focus-visible:ring-offset-zinc-900 focus-visible:before:opacity-100 active:scale-[0.96]"
       aria-label="Mystery button"
     >
       <span class="sr-only">Mystery button</span>
     </button>
     <div
-      class="pointer-events-none absolute left-0 -bottom-1 origin-bottom-right -translate-x-[72%] translate-y-[58%] -rotate-[34deg] select-none text-black"
+      class="pointer-events-none absolute left-0 -bottom-0.5 origin-bottom-right -translate-x-[70%] translate-y-[55%] -rotate-[32deg] select-none text-slate-800 dark:text-slate-200"
       aria-hidden="true"
     >
       <div class="relative block w-fit">
         <svg
-          class="block h-[50px] w-[58px] overflow-visible"
-          width="58"
-          height="50"
-          viewBox="0 -4 5 34"
+          class="block overflow-visible w-[46px]"
+          width="46"
+          height="40"
+          viewBox="-7 0 30 30"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true"
@@ -33,25 +34,25 @@
               viewBox="0 -1 16 18"
               refX="10"
               refY="8"
-              markerWidth="12"
-              markerHeight="12"
+              markerWidth="10"
+              markerHeight="10"
               orient="auto"
               markerUnits="userSpaceOnUse"
               overflow="visible"
             >
               <path
                 d="M0 0.25 L14.5 8 M0 15.75 L14.5 8"
-                class="fill-none stroke-black stroke-[3] [stroke-linecap:round] [stroke-linejoin:round]"
+                class="fill-none stroke-current stroke-[2.5] [stroke-linecap:round] [stroke-linejoin:round]"
               ></path>
             </marker>
           </defs>
           <path
-            class="fill-none stroke-black stroke-[3] [stroke-linecap:round] [stroke-linejoin:round] [vector-effect:non-scaling-stroke]"
+            class="fill-none stroke-current stroke-[2] [stroke-linecap:round] [stroke-linejoin:round] [vector-effect:non-scaling-stroke]"
             d="M5 35 C 12 35 17 32 21 28 C 24 25 27 22 29 20"
             marker-end="url(#mystery-arrowhead)"></path>
         </svg>
         <span
-          class="absolute animate-pulsate rotate-[50deg] top-[55px] right-[15px] m-0 whitespace-nowrap p-0 font-sans text-xs font-semibold leading-tight tracking-wide text-black uppercase"
+          class="absolute ml-2 mt-2 inline-block origin-center whitespace-nowrap p-0 font-sans font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 motion-reduce:animate-none animate-pulsate top-[38px] right-[12px] text-[11px]"
         >
           click me
         </span>
@@ -59,3 +60,28 @@
     </div>
   </div>
 </div>
+
+<script>
+  const THEME_KEY = "theme";
+
+  function toggleDarkMode() {
+    const root = document.documentElement;
+    root.classList.toggle("dark");
+    try {
+      localStorage.setItem(
+        THEME_KEY,
+        root.classList.contains("dark") ? "dark" : "light",
+      );
+    } catch {}
+  }
+
+  const mysteryActions = [toggleDarkMode];
+
+  function runRandomMysteryAction() {
+    mysteryActions[Math.floor(Math.random() * mysteryActions.length)]();
+  }
+
+  document
+    .getElementById("mystery-button-trigger")
+    ?.addEventListener("click", runRandomMysteryAction);
+</script>

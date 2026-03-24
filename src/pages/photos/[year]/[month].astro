@@ -9,6 +9,7 @@ import {
 	getMonthsWithPhotos,
 	getPreviousNextMonth,
 } from "../../../data/photoOfTheDay";
+import MysteryButton from "../../../components/MysteryButton.astro";
 
 export async function getStaticPaths() {
 	const months = getMonthsWithPhotos();
@@ -38,6 +39,7 @@ const { prev, next } = getPreviousNextMonth(year, month);
 		class="bg-[var(--off-white)] min-h-screen flex flex-col overflow-x-hidden"
 	>
 		<Nav currentPath={Astro.url.pathname} />
+		<MysteryButton />
 		<main
 			class="w-full max-w-4xl mx-auto px-4 py-10 pb-16 flex-1 flex flex-col justify-center min-h-[100dvh] min-w-0"
 		>

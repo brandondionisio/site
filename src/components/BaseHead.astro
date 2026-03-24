@@ -20,6 +20,15 @@ const { title, description, image = Smile } = Astro.props;
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
+<script is:inline>
+	(function () {
+		try {
+			if (localStorage.getItem("theme") === "dark") {
+				document.documentElement.classList.add("dark");
+			}
+		} catch (_) {}
+	})();
+</script>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
