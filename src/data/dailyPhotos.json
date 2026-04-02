@@ -97,5 +97,14 @@
   {
     "date": "2026-03-30",
     "src": "/photos/2026-03-30.jpg"
+  },
+  {
+    "date": "2026-04-01",
+    "src": "/photos/2026-04-01.jpg"
+  },
+  {
+    "date": "2026-04-02",
+    "src": "/photos/2026-04-02.jpg",
+    "alt": "Forsythia bloom"
   }
 ]
