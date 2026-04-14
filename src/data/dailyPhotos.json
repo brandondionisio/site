@@ -138,5 +138,23 @@
   {
     "date": "2026-04-09",
     "src": "/photos/2026-04-09.jpg"
+  },
+  {
+    "date": "2026-04-10",
+    "src": "/photos/2026-04-10.png"
+  },
+  {
+    "date": "2026-04-11",
+    "src": "/photos/2026-04-11.jpg",
+    "alt": "We’re back!"
+  },
+  {
+    "date": "2026-04-12",
+    "src": "/photos/2026-04-12.jpg"
+  },
+  {
+    "date": "2026-04-13",
+    "src": "/photos/2026-04-13.jpg",
+    "alt": "Run run run"
   }
 ]
