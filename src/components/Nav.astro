@@ -29,7 +29,7 @@ function isActive(href: string) {
 	aria-label="Main navigation"
 >
 	<div
-		class="block text-xl font-bold text-[#2d2d2d] dark:text-zinc-100 lg:mb-2 no-underline transition-opacity duration-200"
+		class="block text-xl font-bold text-primary lg:mb-2 no-underline transition-opacity duration-200"
 	>
 		{AUTHOR_NAME}
 	</div>
@@ -43,7 +43,7 @@ function isActive(href: string) {
 					<li>
 						{active ? (
 							<span
-								class="block font-normal text-lg text-[#2d2d2d] dark:text-zinc-100 underline cursor-default leading-tight"
+								class="block font-normal text-lg text-secondary underline cursor-default leading-tight"
 								aria-current="page"
 							>
 								{link.label}
@@ -51,7 +51,7 @@ function isActive(href: string) {
 						) : (
 							<a
 								href={link.href}
-								class="block font-normal text-lg text-[#2d2d2d] dark:text-zinc-100 no-underline transition-opacity duration-200 hover:opacity-70 leading-tight"
+								class="block font-normal text-lg text-secondary no-underline transition-opacity duration-200 hover:opacity-70 leading-tight"
 							>
 								{link.label}
 							</a>

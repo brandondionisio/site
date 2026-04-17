@@ -5,6 +5,8 @@
 	--off-white: #fafaf8;
 	--border-subtle: #e0e0e0;
 	--page-bg: #ffffff;
+	--page-bg-secondary: #ffffff;
+	--page-bg-tertiary: #ffffff;
 	--accent: #db2777;
 	--gray-dark: 45, 45, 45;
 	--gray: 107, 107, 107;
@@ -20,6 +22,8 @@ html.dark {
 	--off-white: #121214;
 	--border-subtle: #3f3f46;
 	--page-bg: #0c0c0f;
+	--page-bg-secondary: #2e2e33;
+	--page-bg-tertiary: #37373c;
 	--gray-dark: 236, 236, 236;
 	--gray: 161, 161, 170;
 	--gray-light: 39, 39, 42;

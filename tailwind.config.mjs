@@ -11,8 +11,8 @@ export default {
 			},
 			keyframes: {
 				pulsate: {
-					'0%, 100%': { transform: 'rotate(55deg) scale(1)' },
-					'50%': { transform: 'rotate(55deg) scale(1.1)' },
+					'0%, 100%': { transform: 'rotate(45deg) scale(1)' },
+					'50%': { transform: 'rotate(45deg) scale(1.1)' },
 				},
 			},
 			animation: {
