@@ -1,0 +1,68 @@
+---
+title: 'Take A Stab At My Cryptic'
+description: 'I tried to make my own Minute Cryptic puzzles'
+pubDate: 'Apr 21 2026'
+graphic: ../../assets/graphics/thinking.svg
+---
+
+import CrypticPuzzle from "../components/CrypticPuzzle.astro"
+import SpoilerContinue from "../components/SpoilerContinue.astro"
+
+For several months now, I've been solving the daily [Minute Cryptic](https://www.minutecryptic.com/) puzzles as part of my daily routine.
+
+With hundreds of these cryptic crossword clues completed and a good idea of how they work, I wondered how I would fare at writing my own clues.
+
+[Minute Cryptic](https://www.minutecryptic.com/) actually offers a subscription that lets members submit their own puzzles, but it costs $90/year, and unfortunately I don't think it's worth carving out room for in my budget. Instead of subscribing, I decided to come up with my own cryptic crossword clues and post them here!
+
+If you don't know how cryptic crossword clues work, here's a brief explanation:
+
+Every puzzle is composed of the clue itself and the number of letters in the answer. For example, one clue might read "Party leader backtracked, opening parts of the Strait of Hormuz? (4)," indicating a four-letter answer.
+
+The clue can *\*almost\** always be broken down into three parts: the definition, the fodder, and the indicator. The definition is the meaning of the answer, so the solution you're trying to come up with is a synonym for this part of the clue. The fodder contains the letters you extract and rearrange to form the answer. The indicator is the part of the clue that tells you *how* to manipulate that fodder. Indicators can tell you to anagram (or scramble), remove, insert, select, or reverse certain letters, and they are pretty tricky to pick up on at first. Even trickier, you have no idea which part of the clue belongs to each category unless you use a hint.
+
+I'm going to talk about how to solve that cryptic clue, so try to solve it yourself first if you want to.
+
+<SpoilerContinue>
+
+"Party leader backtracked, opening parts of the Strait of Hormuz? (4)" is broken down as follows: "Party leader" is the definition, "backtracked opening parts" is the indicator, and "the Strait of Hormuz" is the fodder. The answer is another word for "Party leader," and you need to "backtrack [the] opening parts" of "the Strait of Hormuz." So, taking the first letters of the fodder, "**t**he **S**trait **o**f **H**ormuz," and reversing, or backtracking, them, you get the word *host*, which is another name for a party leader.
+
+Each clue has a par—or the average number of hints needed to reach the answer—and this one has a par of one.
+
+I came up with two clues, the first a little easier than the second, so try them out and let me know how you did!
+
+<CrypticPuzzle
+	id="try-cryptic-1"
+	clue="Cutting before weaving pretty lavender, on purpose."
+	length={11}
+	parDots={3}
+	par={1}
+	answer="advertently"
+	definition="on purpose"
+	fodder={["before", "pretty lavender"]}
+	indicator={["Cutting", "weaving"]}
+	explanation={`The indicators, "CUTTING" and "WEAVING," indicate what to do with the fodders, "BEFORE" and "PRETTY LAVENDER."
+  
+  You must weave, or anagram, the letters of "PRETTY LAVENDER" after cutting, or remove, "BEFORE," which can be substituted with "PRE." "PRETTY LAVENDER" without "PRE" is "TTY LAVENDER." This can be anagrammed into "ADVERTENTLY," which is another word for "on purpose," the definition.`}
+/>
+
+<CrypticPuzzle
+	id="try-cryptic-2"
+	clue="Feeling empty in the middle of traffic before morning hours. Punished, no laughing matter."
+	length={8}
+	parDots={3}
+	par={2}
+	answer="famished"
+	definition="Feeling empty"
+	fodder={[
+		"traffic",
+		"before morning hours",
+		"Punished",
+		"laughing matter",
+	]}
+	indicator={["in the middle of", "no"]}
+	explanation={`The indicators, "IN THE MIDDLE OF," "BEFORE," and "NO," indicate what to do with the fodders, "TRAFFIC," "MORNING HOURS," "PUNISHED," and "LAUGHING MATTER."
+  
+  "IN THE MIDDLE OF" tells you to take the middle letter of "TRAFFIC" → F. "BEFORE MORNING HOURS" can be substituted with "AM," as hours before the morning are in the AM. "PUNISHED" with "NO" "LAUGHING MATTER", which can be substituted with "PUN," leaves "ISHED." So, in order: F + AM + ISHED = FAMISHED, which is another word for "FEELING EMPTY," the definition.`}
+/>
+
+</SpoilerContinue>
