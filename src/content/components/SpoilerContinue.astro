@@ -7,10 +7,10 @@ const { label = "Continue" } = Astro.props;
 ---
 
 <details
-	class="spoiler-continue group my-8 flex w-full flex-col items-center [&_summary::-webkit-details-marker]:hidden"
+	class="spoiler-continue group my-8 w-full [&_summary::-webkit-details-marker]:hidden"
 >
 	<summary
-		class="group/summary flex cursor-pointer list-none flex-col items-center rounded-md select-none outline-none dark:focus-visible:ring-offset-zinc-900"
+		class="group/summary mx-auto flex w-fit cursor-pointer list-none flex-col items-center rounded-md select-none outline-none dark:focus-visible:ring-offset-zinc-900"
 	>
 		<span
 			class="inline-flex items-center justify-center rounded-md text-[var(--accent)] text-sm font-semibold"

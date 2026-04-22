@@ -19,6 +19,6 @@ const { Content } = await render(post);
 
 <BlogPost {...post.data}>
 	<Nav slot="nav" currentPath={Astro.url.pathname} />
-	<MysteryButton />
+	<MysteryButton mobileTopRight={true} />
 	<Content />
 </BlogPost>
