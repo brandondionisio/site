@@ -187,5 +187,13 @@
     "date": "2026-04-20",
     "src": "/photos/2026-04-20.jpg",
     "alt": "Chipped My Laptop"
+  },
+  {
+    "date": "2026-04-21",
+    "src": "/photos/2026-04-21.jpg"
+  },
+  {
+    "date": "2026-04-22",
+    "src": "/photos/2026-04-22.jpg"
   }
 ]
