@@ -9,7 +9,6 @@ interface Props {
 	definition?: string;
 	fodder?: string | string[];
 	indicator?: string | string[];
-	/** Shown when the reader taps Reveal (plain text; use blank lines for paragraphs). */
 	explanation?: string;
 }
 
@@ -52,11 +51,11 @@ const explanationText = (explanation ?? "").trim();
 
 <div
 	id={safeId}
-	class="cryptic-puzzle relative z-0 my-7 max-w-full overflow-visible rounded-lg border-2 border-[rgb(var(--black))] bg-[var(--page-bg,#fff)] p-4 shadow-[4px_4px_0_0_rgb(var(--black))] dark:border-zinc-300 dark:bg-zinc-900/90 dark:shadow-[4px_4px_0_0_rgb(212,212,216)]"
+	class="cryptic-puzzle relative z-0 my-7 max-w-full overflow-visible rounded-lg border-2 border-zinc-900 bg-white p-4 text-zinc-800 shadow-[4px_4px_0_0_rgb(24,24,27)]"
 	data-cryptic={safeId}
 >
 	<p
-		class="cryptic-clue mb-4 rounded-md border-2 border-[rgb(var(--black))] bg-white px-3 py-3 text-[0.95rem] leading-snug text-[rgb(var(--gray-dark))] dark:border-zinc-400 dark:bg-zinc-950 dark:text-zinc-100 [&_mark]:rounded-sm [&_mark]:px-0.5"
+		class="cryptic-clue mb-4 rounded-md border-2 border-zinc-900 bg-white px-3 py-3 text-[0.95rem] leading-snug text-zinc-800 [&_mark]:rounded-sm [&_mark]:px-0.5"
 		data-clue-output
 	>
 		{clue}<span class="whitespace-nowrap font-medium opacity-70"
@@ -81,14 +80,14 @@ const explanationText = (explanation ?? "").trim();
 					maxlength={1}
 					data-idx={i}
 					aria-label={`Letter ${i + 1} of ${length}`}
-					class="h-10 w-9 shrink-0 rounded-md border-2 border-[rgb(var(--black))] bg-violet-50 text-center text-lg font-semibold uppercase tabular-nums tracking-wide text-[rgb(var(--gray-dark))] shadow-[2px_2px_0_0_rgb(var(--black))] outline-none transition-colors focus:bg-violet-100 focus:ring-2 focus:ring-[var(--accent)] dark:border-zinc-300 dark:bg-violet-950/50 dark:text-zinc-100 dark:focus:bg-violet-900/60 dark:shadow-[2px_2px_0_0_rgb(212,212,216)]"
+					class="h-10 w-9 shrink-0 rounded-md border-2 border-zinc-900 bg-violet-50 text-center text-lg font-semibold uppercase tabular-nums tracking-wide text-zinc-800 shadow-[2px_2px_0_0_rgb(24,24,27)] outline-none transition-colors focus:bg-violet-100 focus:ring-2 focus:ring-fuchsia-500"
 				/>
 			))
 		}
 	</div>
 
 	<div
-		class="flex flex-col gap-3 border-t-2 border-dashed border-[rgb(var(--gray-light))] pt-3 dark:border-zinc-600 sm:flex-row sm:items-center sm:justify-between"
+		class="flex flex-col gap-3 border-t-2 border-dashed border-zinc-300 pt-3 sm:flex-row sm:items-center sm:justify-between"
 	>
 		<div class="flex items-center gap-2.5">
 			<div
@@ -100,10 +99,10 @@ const explanationText = (explanation ?? "").trim();
 					dotIndices.map((i) => (
 						<span
 							class:list={[
-								"par-dot shrink-0 rounded-full border-2 border-[rgb(var(--black))] transition-colors dark:border-zinc-300",
+								"par-dot shrink-0 rounded-full border-2 border-zinc-900 transition-colors",
 								i === parIndex0
-									? "h-3 w-3 bg-[var(--accent)]/25 ring-2 ring-[rgb(var(--black))] ring-offset-2 ring-offset-[var(--page-bg,#fff)] dark:bg-[var(--accent)]/20 dark:ring-zinc-300 dark:ring-offset-zinc-900"
-									: "h-2.5 w-2.5 bg-zinc-200/80 dark:bg-zinc-600",
+									? "h-3 w-3 bg-fuchsia-300/40 ring-2 ring-zinc-900 ring-offset-2 ring-offset-white"
+									: "h-2.5 w-2.5 bg-zinc-200/80",
 							]}
 							data-par-dot={i}
 							aria-hidden="true"
@@ -111,8 +110,7 @@ const explanationText = (explanation ?? "").trim();
 					))
 				}
 			</div>
-			<span
-				class="font-serif text-sm font-semibold italic text-[rgb(var(--black))] dark:text-zinc-200"
+			<span class="font-serif text-sm font-semibold italic text-zinc-900"
 				>par</span
 			>
 		</div>
@@ -121,9 +119,9 @@ const explanationText = (explanation ?? "").trim();
 			<button
 				type="button"
 				class:list={[
-					"rounded-full border-2 border-[rgb(var(--black))] bg-amber-100 px-4 py-1.5 font-serif text-sm font-semibold italic text-[rgb(var(--black))] shadow-[2px_2px_0_0_rgb(var(--black))] transition-transform hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0_0_rgb(var(--black))] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none dark:border-zinc-300 dark:bg-amber-200/85 dark:text-zinc-900 dark:shadow-[2px_2px_0_0_rgb(212,212,216)]",
+					"rounded-full border-2 border-zinc-900 bg-amber-100 px-4 py-1.5 font-serif text-sm font-semibold italic text-zinc-900 shadow-[2px_2px_0_0_rgb(24,24,27)] transition-transform hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0_0_rgb(24,24,27)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none",
 					!hasHints &&
-						"cursor-not-allowed opacity-50 hover:translate-x-0 hover:translate-y-0 hover:shadow-[2px_2px_0_0_rgb(var(--black))]",
+						"cursor-not-allowed opacity-50 hover:translate-x-0 hover:translate-y-0 hover:shadow-[2px_2px_0_0_rgb(24,24,27)]",
 				]}
 				data-hints-btn
 				aria-expanded="false"
@@ -138,10 +136,10 @@ const explanationText = (explanation ?? "").trim();
 			<button
 				type="button"
 				class:list={[
-					"rounded-full border-2 px-4 py-1.5 font-serif text-sm font-semibold italic shadow-[2px_2px_0_0_rgb(var(--black))] transition-transform dark:shadow-[2px_2px_0_0_rgb(212,212,216)]",
+					"rounded-full border-2 px-4 py-1.5 font-serif text-sm font-semibold italic shadow-[2px_2px_0_0_rgb(24,24,27)] transition-transform",
 					hasAnswer
-						? "border-[rgb(var(--black))] bg-lime-50 text-[rgb(var(--black))] hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0_0_rgb(var(--black))] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-[2px_2px_0_0_rgb(var(--black))] dark:border-zinc-300 dark:bg-lime-950/50 dark:text-zinc-100"
-						: "cursor-not-allowed border-zinc-300 bg-zinc-100 text-zinc-400 shadow-[2px_2px_0_0_rgb(212,212,216)] dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-500 dark:shadow-none",
+						? "border-zinc-900 bg-lime-50 text-zinc-900 hover:translate-x-px hover:translate-y-px hover:shadow-[1px_1px_0_0_rgb(24,24,27)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-x-0 disabled:hover:translate-y-0 disabled:hover:shadow-[2px_2px_0_0_rgb(24,24,27)]"
+						: "cursor-not-allowed border-zinc-300 bg-zinc-100 text-zinc-400 shadow-[2px_2px_0_0_rgb(212,212,216)]",
 				]}
 				data-check-btn
 				disabled={!hasAnswer}
@@ -151,7 +149,7 @@ const explanationText = (explanation ?? "").trim();
 			</button>
 			<button
 				type="button"
-				class="rounded-md border-2 border-[rgb(var(--black))] bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[rgb(var(--gray-dark))] shadow-[2px_2px_0_0_rgb(var(--black))] transition-transform hover:translate-x-px hover:translate-y-px dark:border-zinc-300 dark:bg-zinc-800 dark:text-zinc-200 dark:shadow-[2px_2px_0_0_rgb(212,212,216)]"
+				class="rounded-md border-2 border-zinc-900 bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-800 shadow-[2px_2px_0_0_rgb(24,24,27)] transition-transform hover:translate-x-px hover:translate-y-px"
 				data-clear-btn
 				title="Clear entered letters (hints and par stay)"
 			>
@@ -162,7 +160,7 @@ const explanationText = (explanation ?? "").trim();
 					<button
 						type="button"
 						class:list={[
-							"rounded-md border-2 border-[rgb(var(--black))] bg-violet-100 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[rgb(var(--gray-dark))] shadow-[2px_2px_0_0_rgb(var(--black))] transition-transform hover:translate-x-px hover:translate-y-px dark:border-zinc-300 dark:bg-violet-950/60 dark:text-zinc-100 dark:shadow-[2px_2px_0_0_rgb(212,212,216)]",
+							"rounded-md border-2 border-zinc-900 bg-violet-100 px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-800 shadow-[2px_2px_0_0_rgb(24,24,27)] transition-transform hover:translate-x-px hover:translate-y-px",
 						]}
 						data-reveal-btn
 						aria-expanded="false"
@@ -179,7 +177,7 @@ const explanationText = (explanation ?? "").trim();
 	<div class="mt-3 min-h-[1.35rem] space-y-2" data-feedback-area>
 		<div
 			id={`${safeId}-hints-inline`}
-			class="rounded-md border-2 border-[rgb(var(--black))] bg-gray-50/90 p-3 dark:border-zinc-400 dark:bg-amber-950/35"
+			class="rounded-md border-2 border-zinc-900 bg-gray-50/90 p-3"
 			data-hints-inline
 			hidden
 			aria-hidden="true"
@@ -189,13 +187,13 @@ const explanationText = (explanation ?? "").trim();
 			<div class="flex items-start justify-between gap-2">
 				<p
 					id={`${safeId}-hints-title`}
-					class="m-0 text-sm font-semibold text-[rgb(var(--gray-dark))] dark:text-zinc-200"
+					class="m-0 text-sm font-semibold text-zinc-800"
 				>
 					Select a hint
 				</p>
 				<button
 					type="button"
-					class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border-2 border-[rgb(var(--black))] bg-white text-lg leading-none text-[rgb(var(--black))] shadow-[2px_2px_0_0_rgb(var(--black))] hover:bg-zinc-100 dark:border-zinc-400 dark:bg-zinc-800 dark:text-zinc-100 dark:shadow-[2px_2px_0_0_rgb(212,212,216)] dark:hover:bg-zinc-700"
+					class="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border-2 border-zinc-900 bg-white text-lg leading-none text-zinc-900 shadow-[2px_2px_0_0_rgb(24,24,27)] hover:bg-zinc-100"
 					data-hints-close
 					aria-label="Close hints"
 				>
@@ -206,7 +204,7 @@ const explanationText = (explanation ?? "").trim();
 				<li>
 					<button
 						type="button"
-						class="cryptic-hint-opt w-full rounded-md border-0 bg-transparent px-2 py-2.5 text-left font-serif text-sm font-semibold italic text-[rgb(var(--black))] hover:bg-fuchsia-100/90 dark:text-zinc-100 dark:hover:bg-fuchsia-950/40"
+						class="cryptic-hint-opt w-full rounded-md border-0 bg-transparent px-2 py-2.5 text-left font-serif text-sm font-semibold italic text-zinc-900 hover:bg-fuchsia-100/90"
 						data-hint-kind="indicator"
 					>
 						show indicators
@@ -215,7 +213,7 @@ const explanationText = (explanation ?? "").trim();
 				<li>
 					<button
 						type="button"
-						class="cryptic-hint-opt w-full rounded-md border-0 bg-transparent px-2 py-2.5 text-left font-serif text-sm font-semibold italic text-[rgb(var(--black))] hover:bg-amber-100/90 dark:text-zinc-100 dark:hover:bg-amber-950/40"
+						class="cryptic-hint-opt w-full rounded-md border-0 bg-transparent px-2 py-2.5 text-left font-serif text-sm font-semibold italic text-zinc-900 hover:bg-amber-100/90"
 						data-hint-kind="fodder"
 					>
 						show fodder
@@ -224,7 +222,7 @@ const explanationText = (explanation ?? "").trim();
 				<li>
 					<button
 						type="button"
-						class="cryptic-hint-opt w-full rounded-md border-0 bg-transparent px-2 py-2.5 text-left font-serif text-sm font-semibold italic text-[rgb(var(--black))] hover:bg-sky-100/90 dark:text-zinc-100 dark:hover:bg-sky-950/40"
+						class="cryptic-hint-opt w-full rounded-md border-0 bg-transparent px-2 py-2.5 text-left font-serif text-sm font-semibold italic text-zinc-900 hover:bg-sky-100/90"
 						data-hint-kind="definition"
 					>
 						show definition
@@ -244,21 +242,19 @@ const explanationText = (explanation ?? "").trim();
 			hasAnswer && (
 				<div
 					id={`${safeId}-reveal-panel`}
-					class="rounded-md border-2 border-violet-400/90 bg-violet-50/90 p-3 dark:border-violet-600/80 dark:bg-violet-950/40"
+					class="rounded-md border-2 border-violet-400/90 bg-violet-50/90 p-3"
 					data-reveal-panel
 					hidden
 					aria-hidden="true"
 				>
 					<p
-						class="m-0 font-mono text-base font-bold uppercase tracking-[0.2em] text-violet-950 dark:text-violet-100"
+						class="m-0 font-mono text-base font-bold uppercase tracking-[0.2em] text-violet-950"
 						data-reveal-answer
-					>
-					</p>
+					/>
 					<p
-						class="mt-2 hidden whitespace-pre-wrap text-sm leading-relaxed text-[rgb(var(--gray-dark))] dark:text-zinc-200"
+						class="mt-2 hidden whitespace-pre-wrap text-sm leading-relaxed text-zinc-800"
 						data-reveal-explanation
-					>
-					</p>
+					/>
 				</div>
 			)
 		}
@@ -338,7 +334,6 @@ const explanationText = (explanation ?? "").trim();
 			hideRevealPanelFromDom();
 		}
 
-		/** @param {number} used @param {number} target */
 		function parPhrase(used, target) {
 			const diff = used - target;
 			if (diff === 0) return "On par.";
@@ -352,12 +347,9 @@ const explanationText = (explanation ?? "").trim();
 		}
 
 		const markClass = {
-			definition:
-				"bg-sky-200/95 text-[rgb(var(--gray-dark))] dark:bg-sky-800/80 dark:text-zinc-100",
-			fodder:
-				"bg-amber-200/95 text-[rgb(var(--gray-dark))] dark:bg-amber-900/70 dark:text-zinc-100",
-			indicator:
-				"bg-fuchsia-200/95 text-[rgb(var(--gray-dark))] dark:bg-fuchsia-900/60 dark:text-zinc-100",
+			definition: "bg-sky-200/95 text-zinc-800",
+			fodder: "bg-amber-200/95 text-zinc-800",
+			indicator: "bg-fuchsia-200/95 text-zinc-800",
 		};
 
 		function findInsensitive(hay, needle) {
@@ -385,7 +377,6 @@ const explanationText = (explanation ?? "").trim();
 			return out;
 		}
 
-		/** @param {string[]} parts */
 		function rangesForParts(parts) {
 			const ranges = [];
 			for (const p of parts) {
@@ -488,19 +479,15 @@ const explanationText = (explanation ?? "").trim();
 			if (!parDotsEl) return;
 			const dots = parDotsEl.querySelectorAll("[data-par-dot]");
 			dots.forEach((dot, i) => {
-				const el = /** @type {HTMLElement} */ (dot);
+				const el = dot;
 				const isPar = i === parIndex0;
 				const used = i < hintsUsed;
 				el.className = [
-					"par-dot shrink-0 rounded-full border-2 border-[rgb(var(--black))] transition-colors dark:border-zinc-300",
+					"par-dot shrink-0 rounded-full border-2 border-zinc-900 transition-colors",
 					isPar
-						? "h-3 w-3 ring-2 ring-[rgb(var(--black))] ring-offset-2 ring-offset-[var(--page-bg,#fff)] dark:ring-zinc-300 dark:ring-offset-zinc-900"
+						? "h-3 w-3 ring-2 ring-zinc-900 ring-offset-2 ring-offset-white"
 						: "h-2.5 w-2.5",
-					used
-						? "bg-pink-300 dark:bg-pink-600/90"
-						: isPar
-							? "bg-[var(--accent)]/25 dark:bg-[var(--accent)]/20"
-							: "bg-zinc-200/80 dark:bg-zinc-600",
+					used ? "bg-pink-300" : isPar ? "bg-fuchsia-300/40" : "bg-zinc-200/80",
 				].join(" ");
 			});
 		}
@@ -663,8 +650,7 @@ const explanationText = (explanation ?? "").trim();
 			if (!allFilled()) {
 				checkMsg.textContent = "Fill every square first.";
 				checkMsg.hidden = false;
-				checkMsg.className =
-					"text-sm font-semibold text-amber-800 dark:text-amber-200";
+				checkMsg.className = "text-sm font-semibold text-amber-800";
 				return;
 			}
 			const got = inputs
@@ -677,13 +663,11 @@ const explanationText = (explanation ?? "").trim();
 						? `Correct! ${parPhrase(hintsUsed, parTarget)}`
 						: "Correct!";
 				checkMsg.hidden = false;
-				checkMsg.className =
-					"text-sm font-semibold text-emerald-700 dark:text-emerald-400";
+				checkMsg.className = "text-sm font-semibold text-emerald-700";
 			} else {
 				checkMsg.textContent = "Not quite — keep trying.";
 				checkMsg.hidden = false;
-				checkMsg.className =
-					"text-sm font-semibold text-rose-700 dark:text-rose-400";
+				checkMsg.className = "text-sm font-semibold text-rose-700";
 			}
 		});
 

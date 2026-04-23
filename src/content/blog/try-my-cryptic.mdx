@@ -3,6 +3,7 @@ title: 'Take A Stab At My Cryptic'
 description: 'I tried to make my own Minute Cryptic puzzles'
 pubDate: 'Apr 21 2026'
 graphic: ../../assets/graphics/thinking.svg
+updatedDate: 'Apr 22 2026'
 ---
 
 import CrypticPuzzle from "../components/CrypticPuzzle.astro"
@@ -32,17 +33,17 @@ I came up with two clues, the first a little easier than the second, so try them
 
 <CrypticPuzzle
 	id="try-cryptic-1"
-	clue="Cutting before weaving pretty lavender, on purpose."
+	clue="Cutting before pretty lavender is muddled, on purpose."
 	length={11}
 	parDots={3}
-	par={1}
+	par={2}
 	answer="advertently"
 	definition="on purpose"
 	fodder={["before", "pretty lavender"]}
-	indicator={["Cutting", "weaving"]}
-	explanation={`The indicators, "CUTTING" and "WEAVING," indicate what to do with the fodders, "BEFORE" and "PRETTY LAVENDER."
+	indicator={["Cutting", "is muddled"]}
+	explanation={`The indicators, "CUTTING" and "IS MUDDLED," indicate what to do with the fodders, "BEFORE" and "PRETTY LAVENDER."
   
-  You must weave, or anagram, the letters of "PRETTY LAVENDER" after cutting, or remove, "BEFORE," which can be substituted with "PRE." "PRETTY LAVENDER" without "PRE" is "TTY LAVENDER." This can be anagrammed into "ADVERTENTLY," which is another word for "on purpose," the definition.`}
+  You must muddle, or anagram, the letters of "PRETTY LAVENDER" after cutting, or removing, "BEFORE," which can be substituted with "PRE." "PRETTY LAVENDER" without "PRE" is "TTY LAVENDER." This can be anagrammed into "ADVERTENTLY," which is another word for "on purpose," the definition.`}
 />
 
 <CrypticPuzzle
@@ -50,19 +51,19 @@ I came up with two clues, the first a little easier than the second, so try them
 	clue="Feeling empty in the middle of traffic before morning hours. Punished, no laughing matter."
 	length={8}
 	parDots={3}
-	par={2}
+	par={3}
 	answer="famished"
 	definition="Feeling empty"
 	fodder={[
 		"traffic",
-		"before morning hours",
+		"morning hours",
 		"Punished",
 		"laughing matter",
 	]}
-	indicator={["in the middle of", "no"]}
+	indicator={["in the middle of", "no", "before"]}
 	explanation={`The indicators, "IN THE MIDDLE OF," "BEFORE," and "NO," indicate what to do with the fodders, "TRAFFIC," "MORNING HOURS," "PUNISHED," and "LAUGHING MATTER."
   
-  "IN THE MIDDLE OF" tells you to take the middle letter of "TRAFFIC" → F. "BEFORE MORNING HOURS" can be substituted with "AM," as hours before the morning are in the AM. "PUNISHED" with "NO" "LAUGHING MATTER", which can be substituted with "PUN," leaves "ISHED." So, in order: F + AM + ISHED = FAMISHED, which is another word for "FEELING EMPTY," the definition.`}
+  "IN THE MIDDLE OF" tells you to take the middle letter of "TRAFFIC" → F. "MORNING HOURS" can be substituted with "AM," as hours before the morning are in the AM. "BEFORE" indicates that "F" is before "AM." "PUNISHED" with "NO" "LAUGHING MATTER", which can be substituted with "PUN," leaves "ISHED." So, in order: F + AM + ISHED = FAMISHED, which is another word for "FEELING EMPTY," the definition.`}
 />
 
 </SpoilerContinue>
