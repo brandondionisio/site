@@ -211,5 +211,10 @@
   {
     "date": "2026-04-26",
     "src": "/photos/2026-04-26.jpg"
+  },
+  {
+    "date": "2026-04-27",
+    "src": "/photos/2026-04-27.jpg",
+    "alt": "Fantastic Parking Spot"
   }
 ]
