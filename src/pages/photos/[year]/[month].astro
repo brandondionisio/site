@@ -9,7 +9,7 @@ import {
 	getMonthsWithPhotos,
 	getPreviousNextMonth,
 } from "../../../data/photoOfTheDay";
-import MysteryButton from "../../../components/MysteryButton.astro";
+import MysteryButton from "../../../components/mysteryButton/MysteryButton.astro";
 
 export async function getStaticPaths() {
 	const months = getMonthsWithPhotos();

@@ -4,7 +4,7 @@ import BaseHead from "../../components/BaseHead.astro";
 import FormattedDate from "../../components/FormattedDate.astro";
 import Nav from "../../components/Nav.astro";
 import { SITE_DESCRIPTION, BLOG_TITLE } from "../../consts";
-import MysteryButton from "../../components/MysteryButton.astro";
+import MysteryButton from "../../components/mysteryButton/MysteryButton.astro";
 
 const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),

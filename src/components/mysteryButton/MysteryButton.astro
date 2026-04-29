@@ -1,0 +1,149 @@
+---
+interface Props {
+  mobileFixed?: boolean;
+  mobileTopRight?: boolean;
+}
+
+const { mobileFixed = false, mobileTopRight = false } = Astro.props;
+---
+
+<div
+  class:list={[
+    "pointer-events-none z-40 flex justify-end lg:z-50 lg:fixed lg:left-auto lg:w-auto lg:p-5",
+    mobileFixed
+      ? "fixed right-4 top-20 w-auto p-0 lg:right-5 lg:top-5"
+      : mobileTopRight
+        ? "absolute right-4 top-20 w-auto p-0 lg:right-5 lg:top-5"
+        : "relative right-0 top-4 w-full px-4 pb-2 pt-16",
+  ]}
+>
+  <div class="pointer-events-auto relative size-8 shrink-0">
+    <button
+      id="mystery-button-trigger"
+      type="button"
+      class="group relative size-8 shrink-0 cursor-pointer rounded-full border border-white/10 bg-slate-500 p-0 outline-none ring-1 ring-black/10 transition-[transform,box-shadow,filter] duration-200 ease-out before:pointer-events-none before:absolute before:inset-[-2px] before:rounded-full before:bg-[conic-gradient(from_200deg,#db2777,transparent_28%,#7c3aed,transparent_62%,var(--accent,#db2777))] before:p-px before:opacity-0 before:transition-opacity before:duration-200 before:content-[''] before:[-webkit-mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] before:[-webkit-mask-composite:xor] before:[mask-composite:exclude] hover:scale-105 hover:border-white/25 hover:shadow-md hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent,#db2777)] focus-visible:ring-offset-1 focus-visible:ring-offset-[var(--off-white,#fafaf8)] dark:focus-visible:ring-offset-zinc-900 focus-visible:before:opacity-100 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-90 disabled:hover:scale-100"
+      aria-label="Mystery button"
+    >
+      <span class="sr-only">Mystery button</span>
+      <span
+        class="pointer-events-none absolute inset-[-3px] hidden rounded-full"
+        data-cooldown-wheel
+        aria-hidden="true"></span>
+    </button>
+    <div
+      class="pointer-events-none absolute left-0 -bottom-0.5 origin-bottom-right -translate-x-[70%] translate-y-[55%] -rotate-[32deg] select-none text-slate-800 dark:text-slate-200"
+      aria-hidden="true"
+    >
+      <div class="relative block w-fit">
+        <svg
+          class="block overflow-visible w-[46px]"
+          width="46"
+          height="40"
+          viewBox="-7 0 30 30"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <defs>
+            <marker
+              id="mystery-arrowhead"
+              viewBox="0 -1 16 18"
+              refX="10"
+              refY="8"
+              markerWidth="10"
+              markerHeight="10"
+              orient="auto"
+              markerUnits="userSpaceOnUse"
+              overflow="visible"
+            >
+              <path
+                d="M0 0.25 L14.5 8 M0 15.75 L14.5 8"
+                class="fill-none stroke-current stroke-[2.5] [stroke-linecap:round] [stroke-linejoin:round]"
+              ></path>
+            </marker>
+          </defs>
+          <path
+            class="fill-none stroke-current stroke-[2] [stroke-linecap:round] [stroke-linejoin:round] [vector-effect:non-scaling-stroke]"
+            d="M5 35 C 12 35 17 32 21 28 C 24 25 27 22 29 20"
+            marker-end="url(#mystery-arrowhead)"></path>
+        </svg>
+        <span
+          class="absolute ml-2 mt-2 inline-block origin-center whitespace-nowrap p-0 font-sans font-bold uppercase tracking-wider text-slate-800 dark:text-slate-200 motion-reduce:animate-none animate-pulsate top-[38px] right-[12px] text-[11px]"
+        >
+          click me
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // @ts-nocheck
+  import { toast } from "react-hot-toast";
+  import {
+    COOLDOWN_MS,
+    EFFECT_STAGGER_MS,
+    MYSTERY_TRIGGER_ID,
+    mysteryActions,
+  } from "./MysteryButton.config";
+
+  let cooldownRaf = null;
+  let cooldownUntil = 0;
+
+  function getMysteryTriggerButton() {
+    const el = document.getElementById(MYSTERY_TRIGGER_ID);
+    return el instanceof HTMLButtonElement ? el : null;
+  }
+
+  function startButtonCooldown(durationMs = COOLDOWN_MS) {
+    const trigger = getMysteryTriggerButton();
+    const wheelEl = trigger?.querySelector("[data-cooldown-wheel]");
+    const wheel = wheelEl instanceof HTMLElement ? wheelEl : null;
+    if (!trigger || !wheel) return;
+
+    if (cooldownRaf) {
+      cancelAnimationFrame(cooldownRaf);
+      cooldownRaf = null;
+    }
+    cooldownUntil = Date.now() + durationMs;
+    trigger.disabled = true;
+    trigger.setAttribute("aria-disabled", "true");
+    wheel.classList.remove("hidden");
+
+    const tick = () => {
+      const remaining = Math.max(0, cooldownUntil - Date.now());
+      const pct = 1 - remaining / durationMs;
+      const deg = Math.max(0, Math.min(360, pct * 360));
+      wheel.style.background = `conic-gradient(rgba(219,39,119,0.95) ${deg}deg, rgba(219,39,119,0.2) ${deg}deg 360deg)`;
+      if (remaining <= 0) {
+        trigger.disabled = false;
+        trigger.removeAttribute("aria-disabled");
+        wheel.classList.add("hidden");
+        wheel.style.background = "";
+        cooldownRaf = null;
+        return;
+      }
+      cooldownRaf = requestAnimationFrame(tick);
+    };
+
+    tick();
+  }
+
+  function runRandomMysteryAction() {
+    if (Date.now() < cooldownUntil) return;
+    const picked =
+      mysteryActions[Math.floor(Math.random() * mysteryActions.length)];
+    const trigger = getMysteryTriggerButton();
+    const confettiRect = trigger?.getBoundingClientRect?.() ?? null;
+    const effectCtx = { confettiRect };
+    const text =
+      typeof picked.message === "function" ? picked.message() : picked.message;
+    toast.success(text);
+    startButtonCooldown(EFFECT_STAGGER_MS + COOLDOWN_MS);
+    window.setTimeout(() => {
+      picked.run(trigger, effectCtx);
+    }, EFFECT_STAGGER_MS);
+  }
+
+  getMysteryTriggerButton()?.addEventListener("click", runRandomMysteryAction);
+</script>
