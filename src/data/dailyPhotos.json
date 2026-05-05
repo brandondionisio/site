@@ -216,5 +216,25 @@
     "date": "2026-04-27",
     "src": "/photos/2026-04-27.jpg",
     "alt": "Fantastic Parking Spot"
+  },
+  {
+    "date": "2026-04-28",
+    "src": "/photos/2026-04-28.jpg"
+  },
+  {
+    "date": "2026-04-29",
+    "src": "/photos/2026-04-29.jpg"
+  },
+  {
+    "date": "2026-04-30",
+    "src": "/photos/2026-04-30.jpg"
+  },
+  {
+    "date": "2026-05-01",
+    "src": "/photos/2026-05-01.jpg"
+  },
+  {
+    "date": "2026-05-02",
+    "src": "/photos/2026-05-02.jpg"
   }
 ]
