@@ -6,7 +6,6 @@ const RANDOM_REDIRECTS = [
   "/blog/starting-something-new/",
   "/blog/phonetics/",
   "/photos/",
-  "/blog/",
 ];
 
 function randomRedirect() {

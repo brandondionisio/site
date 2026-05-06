@@ -1,4 +1,6 @@
 ---
+import { Toaster } from "react-hot-toast";
+
 interface Props {
   mobileFixed?: boolean;
   mobileTopRight?: boolean;
@@ -6,6 +8,28 @@ interface Props {
 
 const { mobileFixed = false, mobileTopRight = false } = Astro.props;
 ---
+
+<Toaster
+  client:load
+  position="bottom-right"
+  containerClassName="!bottom-4 !right-4"
+  toastOptions={{
+    duration: 3500,
+    style: {
+      background: "rgba(24, 24, 27, 0.95)",
+      color: "#fafafa",
+      border: "1px solid rgba(250, 250, 250, 0.15)",
+      fontFamily: "Rubik, system-ui, sans-serif",
+      fontSize: "12px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+      maxWidth: "min(90vw, 320px)",
+      borderRadius: "10px",
+      padding: "10px 12px",
+    },
+  }}
+/>
 
 <div
   class:list={[

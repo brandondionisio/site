@@ -14,10 +14,10 @@ function flipPageUpsideDown() {
   flipTimer = window.setTimeout(() => {
     root.style.transform = "";
     flipTimer = null;
-  }, 10000);
+  }, 5000);
 }
 
 export const flipAction: MysteryAction = {
   run: () => flipPageUpsideDown(),
-  message: "Screen flip!",
+  message: "transform: rotate(180deg); applied",
 };

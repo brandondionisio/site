@@ -1,9 +1,9 @@
 import type { MysteryAction } from "./MysteryButton.interface";
-import { confettiAction } from "./actions/confetti";
-import { redirectAction } from "./actions/redirect";
-import { flipAction } from "./actions/flip";
-import { spotifyAction } from "./actions/spotify";
-import { darkModeAction } from "./actions/darkMode";
+import { confettiAction } from "./actions/Confetti";
+import { redirectAction } from "./actions/Redirect";
+import { flipAction } from "./actions/Flip";
+import { spotifyAction } from "./actions/Spotify";
+import { darkModeAction } from "./actions/DarkMode";
 
 export const MYSTERY_TRIGGER_ID = "mystery-button-trigger";
 
@@ -13,8 +13,8 @@ export const EFFECT_STAGGER_MS = 800;
 
 export const mysteryActions: MysteryAction[] = [
   confettiAction,
-  redirectAction,
+  // redirectAction,
   flipAction,
-  spotifyAction,
-  darkModeAction,
+  // spotifyAction,
+  // darkModeAction,
 ];
