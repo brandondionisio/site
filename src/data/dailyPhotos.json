@@ -236,5 +236,35 @@
   {
     "date": "2026-05-02",
     "src": "/photos/2026-05-02.jpg"
+  },
+  {
+    "date": "2026-05-03",
+    "src": "/photos/2026-05-03.jpg"
+  },
+  {
+    "date": "2026-05-04",
+    "src": "/photos/2026-05-04.jpg",
+    "alt": "Full Moon"
+  },
+  {
+    "date": "2026-05-05",
+    "src": "/photos/2026-05-05.jpg"
+  },
+  {
+    "date": "2026-05-06",
+    "src": "/photos/2026-05-06.jpg"
+  },
+  {
+    "date": "2026-05-07",
+    "src": "/photos/2026-05-07.jpg",
+    "alt": "Least amount of traffic on 52"
+  },
+  {
+    "date": "2026-05-08",
+    "src": "/photos/2026-05-08.jpg"
+  },
+  {
+    "date": "2026-05-09",
+    "src": "/photos/2026-05-09.jpg"
   }
 ]
