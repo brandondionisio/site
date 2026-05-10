@@ -266,5 +266,10 @@
   {
     "date": "2026-05-09",
     "src": "/photos/2026-05-09.jpg"
+  },
+  {
+    "date": "2026-05-10",
+    "src": "/photos/2026-05-10.jpg",
+    "alt": "Mother’s Day at Stonecrop"
   }
 ]
