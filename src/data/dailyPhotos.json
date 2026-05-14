@@ -271,5 +271,18 @@
     "date": "2026-05-10",
     "src": "/photos/2026-05-10.jpg",
     "alt": "Mother’s Day at Stonecrop"
+  },
+  {
+    "date": "2026-05-11",
+    "src": "/photos/2026-05-11.jpg"
+  },
+  {
+    "date": "2026-05-12",
+    "src": "/photos/2026-05-12.jpg"
+  },
+  {
+    "date": "2026-05-13",
+    "src": "/photos/2026-05-13.jpg",
+    "alt": "Boston Aquarium"
   }
 ]
