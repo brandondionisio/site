@@ -328,5 +328,26 @@
     "date": "2026-05-23",
     "src": "/photos/2026-05-23.jpg",
     "alt": "Pup cup"
+  },
+  {
+    "date": "2026-05-24",
+    "src": "/photos/2026-05-24.jpg",
+    "alt": "Wembananas"
+  },
+  {
+    "date": "2026-05-25",
+    "src": "/photos/2026-05-25.jpg"
+  },
+  {
+    "date": "2026-05-26",
+    "src": "/photos/2026-05-26.jpg"
+  },
+  {
+    "date": "2026-05-27",
+    "src": "/photos/2026-05-27.jpg"
+  },
+  {
+    "date": "2026-05-28",
+    "src": "/photos/2026-05-28.jpg"
   }
 ]
