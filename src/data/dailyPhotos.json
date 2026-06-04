@@ -349,5 +349,32 @@
   {
     "date": "2026-05-28",
     "src": "/photos/2026-05-28.jpg"
+  },
+  {
+    "date": "2026-05-29",
+    "src": "/photos/2026-05-29.jpg"
+  },
+  {
+    "date": "2026-05-30",
+    "src": "/photos/2026-05-30.jpg"
+  },
+  {
+    "date": "2026-05-31",
+    "src": "/photos/2026-05-31.jpg",
+    "alt": "My car is trapped"
+  },
+  {
+    "date": "2026-06-01",
+    "src": "/photos/2026-06-01.jpg",
+    "alt": "Codenames"
+  },
+  {
+    "date": "2026-06-02",
+    "src": "/photos/2026-06-02.jpg",
+    "alt": "A$AP"
+  },
+  {
+    "date": "2026-06-03",
+    "src": "/photos/2026-06-03.jpg"
   }
 ]
