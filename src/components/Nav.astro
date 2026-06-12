@@ -105,14 +105,16 @@ function isActive(href: string) {
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
                   class:list={[
-                    "block text-secondary no-underline transition-opacity duration-200 hover:opacity-70 leading-tight",
-                    link.external ? "group text-sm italic" : "text-lg",
+                    "block text-lg font-normal leading-tight",
+                    link.external
+                      ? "nav-link--external group transition-colors duration-200"
+                      : "transition-opacity duration-200 hover:opacity-70",
                   ]}
                 >
                   {link.external ? (
-                    <span class="inline-flex items-center gap-1">
+                    <span class="inline-flex items-center gap-1.5">
                       <span
-                        class="font-mono not-italic font-normal transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                        class="font-mono transition-transform duration-200 ease-out group-hover:translate-x-0.5"
                         aria-hidden="true"
                       >
                         →
@@ -131,6 +133,25 @@ function isActive(href: string) {
     </ul>
   </div>
 </nav>
+
+<style>
+  #site-nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  #site-nav a:hover {
+    color: var(--text-secondary);
+  }
+
+  #site-nav a.nav-link--external {
+    color: color-mix(in srgb, var(--text-secondary) 75%, transparent);
+  }
+
+  #site-nav a.nav-link--external:hover {
+    color: var(--text-secondary);
+  }
+</style>
 
 <script>
   // @ts-nocheck

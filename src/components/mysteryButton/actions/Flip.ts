@@ -19,5 +19,5 @@ function flipPageUpsideDown() {
 
 export const flipAction: MysteryAction = {
   run: () => flipPageUpsideDown(),
-  message: "transform: rotate(180deg); applied",
+  message: "transform: rotate(180deg);",
 };

@@ -19,6 +19,6 @@ export const darkModeAction: MysteryAction = {
   run: () => toggleDarkMode(),
   message: () =>
     document.documentElement.classList.contains("dark")
-      ? "Dark mode enabled"
-      : "Dark mode disabled",
+      ? "Dark mode disabled"
+      : "Dark mode enabled",
 };
