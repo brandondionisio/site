@@ -414,5 +414,18 @@
   {
     "date": "2026-06-12",
     "src": "/photos/2026-06-12.jpg"
+  },
+  {
+    "date": "2026-06-13",
+    "src": "/photos/2026-06-13.jpg"
+  },
+  {
+    "date": "2026-06-14",
+    "src": "/photos/2026-06-14.png",
+    "alt": "Made a new friend"
+  },
+  {
+    "date": "2026-06-15",
+    "src": "/photos/2026-06-15.jpg"
   }
 ]
