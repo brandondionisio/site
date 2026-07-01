@@ -103,16 +103,24 @@ async function listAndDownload() {
 	const outDir = join(ROOT, "public", "photos");
 	mkdirSync(outDir, { recursive: true });
 
-	const res = await drive.files.list({
-		q: `'${FOLDER_ID}' in parents and trashed = false`,
-		fields: "files(id, name, mimeType, createdTime)",
-		orderBy: "name",
-	});
-
 	const ALLOWED_MIMES = ["image/jpeg", "image/png", "image/heic", "image/heif"];
-	const files = (res.data.files || []).filter((f) =>
-		ALLOWED_MIMES.includes((f.mimeType || "").toLowerCase())
-	);
+	const files = [];
+	let pageToken;
+	do {
+		const res = await drive.files.list({
+			q: `'${FOLDER_ID}' in parents and trashed = false`,
+			fields: "nextPageToken, files(id, name, mimeType, createdTime)",
+			orderBy: "name",
+			pageSize: 100,
+			pageToken,
+		});
+		for (const f of res.data.files || []) {
+			if (ALLOWED_MIMES.includes((f.mimeType || "").toLowerCase())) {
+				files.push(f);
+			}
+		}
+		pageToken = res.data.nextPageToken;
+	} while (pageToken);
 
 	function parseDateFromName(name) {
 		const base = name.replace(/\.[^.]+$/, "");
