@@ -3,19 +3,19 @@ import BaseHead from "../../../components/BaseHead.astro";
 import Nav from "../../../components/Nav.astro";
 import { SITE_TITLE } from "../../../consts";
 import {
-	getCalendarMonth,
-	getCalendarThumbSrc,
-	getPhotosByDate,
-	getMonthsWithPhotos,
-	getPreviousNextMonth,
+  getCalendarMonth,
+  getCalendarThumbSrc,
+  getPhotosByDate,
+  getMonthsWithPhotos,
+  getPreviousNextMonth,
 } from "../../../data/photoOfTheDay";
 import MysteryButton from "../../../components/mysteryButton/MysteryButton.astro";
 
 export async function getStaticPaths() {
-	const months = getMonthsWithPhotos();
-	return months.map(({ year, month }) => ({
-		params: { year: String(year), month: String(month) },
-	}));
+  const months = getMonthsWithPhotos();
+  return months.map(({ year, month }) => ({
+    params: { year: String(year), month: String(month) },
+  }));
 }
 
 const { year: yearStr, month: monthStr } = Astro.params;
@@ -29,144 +29,144 @@ const { prev, next } = getPreviousNextMonth(year, month);
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead
-			title={`${calendar.monthName} ${year} | Photos | ${SITE_TITLE}`}
-			description="Photo of the Day"
-		/>
-	</head>
-	<body
-		class="bg-[var(--off-white)] min-h-screen flex flex-col overflow-x-hidden"
-	>
-		<Nav currentPath={Astro.url.pathname} />
-		<MysteryButton />
-		<main
-			class="w-full max-w-4xl mx-auto px-4 py-10 pb-16 flex-1 flex flex-col justify-center min-h-[100dvh] min-w-0"
-		>
-			<header class="mb-8">
-				<h1
-					class="text-center font-mono text-primary text-xl font-semibold m-0 mb-1"
-				>
-					Photo of the Day
-				</h1>
-			</header>
+  <head>
+    <BaseHead
+      title={`${calendar.monthName} ${year} | Photos | ${SITE_TITLE}`}
+      description="Taking a photo every single day"
+    />
+  </head>
+  <body
+    class="bg-[var(--off-white)] min-h-screen flex flex-col overflow-x-hidden"
+  >
+    <Nav currentPath={Astro.url.pathname} />
+    <!-- <MysteryButton /> -->
+    <main
+      class="w-full max-w-4xl mx-auto px-4 py-10 pb-16 flex-1 flex flex-col justify-center min-h-[100dvh] min-w-0"
+    >
+      <header class="mb-8">
+        <h1
+          class="text-center font-mono text-primary text-xl font-semibold m-0 mb-1"
+        >
+          Taking a photo every single day
+        </h1>
+      </header>
 
-			<section class="font-mono min-w-0 overflow-hidden">
-				<div class="flex items-center justify-between gap-4 mb-4">
-					{
-						prev ? (
-							<a
-								href={`/photos/${prev.year}/${prev.month}`}
-								class="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--page-bg-secondary)] border border-[var(--border-subtle)] text-primary no-underline hover:bg-[var(--page-bg-tertiary)] transition-colors"
-								aria-label={`Previous month: ${prev.year}-${String(prev.month).padStart(2, "0")}`}
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="20"
-									height="20"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									aria-hidden="true"
-								>
-									<path d="M15 18l-6-6 6-6" />
-								</svg>
-							</a>
-						) : (
-							<span class="w-10" />
-						)
-					}
-					<h2 class="text-lg font-bold text-primary m-0 flex-1 text-center">
-						{calendar.monthName}
-						{calendar.year}
-					</h2>
-					{
-						next ? (
-							<a
-								href={`/photos/${next.year}/${next.month}`}
-								class="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--page-bg-secondary)] border border-[var(--border-subtle)] text-primary no-underline hover:bg-[var(--page-bg-tertiary)] transition-colors"
-								aria-label={`Next month: ${next.year}-${String(next.month).padStart(2, "0")}`}
-							>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="20"
-									height="20"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									aria-hidden="true"
-								>
-									<path d="M9 18l6-6-6-6" />
-								</svg>
-							</a>
-						) : (
-							<span class="w-10" />
-						)
-					}
-				</div>
+      <section class="font-mono min-w-0 overflow-hidden">
+        <div class="flex items-center justify-between gap-4 mb-4">
+          {
+            prev ? (
+              <a
+                href={`/photos/${prev.year}/${prev.month}`}
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--page-bg-secondary)] border border-[var(--border-subtle)] text-primary no-underline hover:bg-[var(--page-bg-tertiary)] transition-colors"
+                aria-label={`Previous month: ${prev.year}-${String(prev.month).padStart(2, "0")}`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </a>
+            ) : (
+              <span class="w-10" />
+            )
+          }
+          <h2 class="text-lg font-bold text-primary m-0 flex-1 text-center">
+            {calendar.monthName}
+            {calendar.year}
+          </h2>
+          {
+            next ? (
+              <a
+                href={`/photos/${next.year}/${next.month}`}
+                class="flex items-center justify-center w-10 h-10 rounded-full bg-[var(--page-bg-secondary)] border border-[var(--border-subtle)] text-primary no-underline hover:bg-[var(--page-bg-tertiary)] transition-colors"
+                aria-label={`Next month: ${next.year}-${String(next.month).padStart(2, "0")}`}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </a>
+            ) : (
+              <span class="w-10" />
+            )
+          }
+        </div>
 
-				<div
-					class="grid grid-cols-7 overflow-hidden border border-[var(--border-subtle)] w-full max-w-[360px] sm:max-w-none mx-auto"
-				>
-					{
-						calendar.dayLabels.map((label, i) => (
-							<div
-								class={`bg-[var(--page-bg-tertiary)] p-2 text-center text-xs font-semibold text-primary border-b border-[var(--border-subtle)] ${i < 6 ? "border-r" : ""}`}
-							>
-								{label}
-							</div>
-						))
-					}
-					{
-						calendar.weeks.map((week, weekIdx) =>
-							week.map((cell, cellIdx) => {
-								const photo = cell ? photosByDate.get(cell.dateStr) : null;
-								const thumbSrc = photo ? getCalendarThumbSrc(photo.src) : null;
-								const isLastRow = weekIdx === calendar.weeks.length - 1;
-								const isLastCol = cellIdx === 6;
-								return (
-									<div
-										class={`aspect-square bg-[var(--page-bg-secondary)] min-w-0 flex items-center justify-center overflow-hidden border-[var(--border-subtle)] ${!isLastCol ? "border-r" : ""} ${!isLastRow ? "border-b" : ""}`}
-									>
-										{cell && photo ? (
-											<a
-												href={`/photos/${year}/${month}/${cell.day}`}
-												class="block w-full h-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
-											>
-												{thumbSrc ? (
-													<img
-														src={thumbSrc}
-														loading="lazy"
-														decoding="async"
-														alt={photo.alt ?? `Photo for ${cell.dateStr}`}
-														class="w-full h-full object-cover"
-													/>
-												) : (
-													<img
-														src={photo.src}
-														loading="lazy"
-														decoding="async"
-														alt={photo.alt ?? `Photo for ${cell.dateStr}`}
-														class="w-full h-full object-cover"
-													/>
-												)}
-											</a>
-										) : cell ? (
-											<span class="text-xs text-secondary/60">{cell.day}</span>
-										) : null}
-									</div>
-								);
-							}),
-						)
-					}
-				</div>
-			</section>
-		</main>
-	</body>
+        <div
+          class="grid grid-cols-7 overflow-hidden border border-[var(--border-subtle)] w-full max-w-[360px] sm:max-w-none mx-auto"
+        >
+          {
+            calendar.dayLabels.map((label, i) => (
+              <div
+                class={`bg-[var(--page-bg-tertiary)] p-2 text-center text-xs font-semibold text-primary border-b border-[var(--border-subtle)] ${i < 6 ? "border-r" : ""}`}
+              >
+                {label}
+              </div>
+            ))
+          }
+          {
+            calendar.weeks.map((week, weekIdx) =>
+              week.map((cell, cellIdx) => {
+                const photo = cell ? photosByDate.get(cell.dateStr) : null;
+                const thumbSrc = photo ? getCalendarThumbSrc(photo.src) : null;
+                const isLastRow = weekIdx === calendar.weeks.length - 1;
+                const isLastCol = cellIdx === 6;
+                return (
+                  <div
+                    class={`aspect-square bg-[var(--page-bg-secondary)] min-w-0 flex items-center justify-center overflow-hidden border-[var(--border-subtle)] ${!isLastCol ? "border-r" : ""} ${!isLastRow ? "border-b" : ""}`}
+                  >
+                    {cell && photo ? (
+                      <a
+                        href={`/photos/${year}/${month}/${cell.day}`}
+                        class="block w-full h-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+                      >
+                        {thumbSrc ? (
+                          <img
+                            src={thumbSrc}
+                            loading="lazy"
+                            decoding="async"
+                            alt={photo.alt ?? `Photo for ${cell.dateStr}`}
+                            class="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <img
+                            src={photo.src}
+                            loading="lazy"
+                            decoding="async"
+                            alt={photo.alt ?? `Photo for ${cell.dateStr}`}
+                            class="w-full h-full object-cover"
+                          />
+                        )}
+                      </a>
+                    ) : cell ? (
+                      <span class="text-xs text-secondary/60">{cell.day}</span>
+                    ) : null}
+                  </div>
+                );
+              }),
+            )
+          }
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

@@ -6,42 +6,45 @@ import { getMonthsWithPhotos } from "../../data/photoOfTheDay";
 
 const monthsWithPhotos = getMonthsWithPhotos();
 const redirectTo =
-	monthsWithPhotos.length > 0
-		? `/photos/${monthsWithPhotos[monthsWithPhotos.length - 1]!.year}/${monthsWithPhotos[monthsWithPhotos.length - 1]!.month}`
-		: null;
+  monthsWithPhotos.length > 0
+    ? `/photos/${monthsWithPhotos[monthsWithPhotos.length - 1]!.year}/${monthsWithPhotos[monthsWithPhotos.length - 1]!.month}`
+    : null;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={`Photos | ${SITE_TITLE}`} description="Photo of the Day" />
-		{
-			redirectTo && (
-				<meta http-equiv="refresh" content={`0;url=${redirectTo}`} />
-			)
-		}
-	</head>
-	<body class="min-h-screen flex flex-col bg-[var(--off-white)]">
-		{
-			redirectTo ? (
-				<script is:inline define:vars={{ redirectTo }}>
-					window.location.replace(redirectTo);
-				</script>
-			) : (
-				<>
-					<Nav currentPath={Astro.url.pathname} />
-					<main class="w-full max-w-4xl mx-auto px-4 py-10 pb-16 flex-1 lg:flex lg:flex-col lg:justify-center min-w-0">
-						<header class="mb-8 text-center">
-							<h1 class="font-mono text-primary text-xl font-semibold m-0 mb-2">
-								Photo of the Day
-							</h1>
-							<p class="font-mono text-secondary text-sm m-0">
-								No photo data yet.
-							</p>
-						</header>
-					</main>
-				</>
-			)
-		}
-	</body>
+  <head>
+    <BaseHead
+      title={`Photos | ${SITE_TITLE}`}
+      description="Taking a photo every single day"
+    />
+    {
+      redirectTo && (
+        <meta http-equiv="refresh" content={`0;url=${redirectTo}`} />
+      )
+    }
+  </head>
+  <body class="min-h-screen flex flex-col bg-[var(--off-white)]">
+    {
+      redirectTo ? (
+        <script is:inline define:vars={{ redirectTo }}>
+          window.location.replace(redirectTo);
+        </script>
+      ) : (
+        <>
+          <Nav currentPath={Astro.url.pathname} />
+          <main class="w-full max-w-4xl mx-auto px-4 py-10 pb-16 flex-1 lg:flex lg:flex-col lg:justify-center min-w-0">
+            <header class="mb-8 text-center">
+              <h1 class="font-mono text-primary text-xl font-semibold m-0 mb-2">
+                Taking a photo every single day
+              </h1>
+              <p class="font-mono text-secondary text-sm m-0">
+                No photo data yet.
+              </p>
+            </header>
+          </main>
+        </>
+      )
+    }
+  </body>
 </html>

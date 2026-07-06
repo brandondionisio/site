@@ -7,60 +7,60 @@ import { SITE_DESCRIPTION, BLOG_TITLE } from "../../consts";
 import MysteryButton from "../../components/mysteryButton/MysteryButton.astro";
 
 const posts = (await getCollection("blog")).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={BLOG_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Nav currentPath={Astro.url.pathname} />
-		<MysteryButton />
-		<main
-			class="w-full max-w-[640px] mx-auto px-6 py-32 lg:py-20 flex flex-col items-center"
-		>
-			<section class="w-full space-y-5">
-				<ul class="list-none m-0 p-0 space-y-4">
-					{
-						posts.map((post) => (
-							<li>
-								<a
-									href={`/blog/${post.id}/`}
-									class="block rounded-xl bg-[#f8f8f8] dark:bg-zinc-800/90 p-5 text-left no-underline border border-l-4 border-l-transparent border-[#ddd] dark:border-zinc-600 shadow-sm hover:border-l-[#db2777] hover:border-[#e0e0e0] dark:hover:border-zinc-500 hover:shadow-lg hover:translate-y-[-2px] transition-all duration-200"
-								>
-									<div class="flex items-center gap-2 text-sm mb-2">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											width="14"
-											height="14"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											aria-hidden="true"
-										>
-											<circle cx="12" cy="12" r="10" />
-											<polyline points="12 6 12 12 16 14" />
-										</svg>
-										<FormattedDate date={post.data.pubDate} />
-									</div>
-									<h2 class="font-bold text-primary m-0 mb-2 leading-snug">
-										{post.data.title}
-									</h2>
-									<p class="text-sm text-secondary m-0 leading-relaxed">
-										{post.data.description}
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-	</body>
+  <head>
+    <BaseHead title={BLOG_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Nav currentPath={Astro.url.pathname} />
+    <!-- <MysteryButton /> -->
+    <main
+      class="w-full max-w-[640px] mx-auto px-6 py-32 lg:py-20 flex flex-col items-center"
+    >
+      <section class="w-full space-y-5">
+        <ul class="list-none m-0 p-0 space-y-4">
+          {
+            posts.map((post) => (
+              <li>
+                <a
+                  href={`/blog/${post.id}/`}
+                  class="block rounded-xl bg-[#f8f8f8] dark:bg-zinc-800/90 p-5 text-left no-underline border border-l-4 border-l-transparent border-[#ddd] dark:border-zinc-600 shadow-sm hover:border-l-[#db2777] hover:border-[#e0e0e0] dark:hover:border-zinc-500 hover:shadow-lg hover:translate-y-[-2px] transition-all duration-200"
+                >
+                  <div class="flex items-center gap-2 text-sm mb-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    <FormattedDate date={post.data.pubDate} />
+                  </div>
+                  <h2 class="font-bold text-primary m-0 mb-2 leading-snug">
+                    {post.data.title}
+                  </h2>
+                  <p class="text-sm text-secondary m-0 leading-relaxed">
+                    {post.data.description}
+                  </p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </main>
+  </body>
 </html>

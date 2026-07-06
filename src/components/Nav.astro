@@ -88,7 +88,7 @@ function isActive(href: string) {
             <li
               class:list={[
                 startsExternalGroup
-                  ? "lg:mt-2 max-lg:pt-2 max-lg:border-t max-lg:border-gray-200 max-lg:dark:border-zinc-700"
+                  ? "lg:mt-2 max-lg:pt-2 max-lg:mt-2 max-lg:border-t max-lg:border-gray-200 max-lg:dark:border-zinc-700"
                   : undefined,
               ]}
             >
@@ -107,19 +107,27 @@ function isActive(href: string) {
                   class:list={[
                     "block text-lg font-normal leading-tight",
                     link.external
-                      ? "nav-link--external group transition-colors duration-200"
+                      ? "nav-link--external transition-colors duration-200"
                       : "transition-opacity duration-200 hover:opacity-70",
                   ]}
                 >
                   {link.external ? (
                     <span class="inline-flex items-center gap-1.5">
-                      <span
-                        class="font-mono transition-transform duration-200 ease-out group-hover:translate-x-0.5"
+                      {link.label}
+                      <svg
+                        class="h-3.5 w-3.5 shrink-0 opacity-70"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
                         aria-hidden="true"
                       >
-                        →
-                      </span>
-                      {link.label}
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                        <polyline points="15 3 21 3 21 9" />
+                        <line x1="10" y1="14" x2="21" y2="3" />
+                      </svg>
                     </span>
                   ) : (
                     link.label
@@ -145,11 +153,11 @@ function isActive(href: string) {
   }
 
   #site-nav a.nav-link--external {
-    color: color-mix(in srgb, var(--text-secondary) 75%, transparent);
+    color: color-mix(in srgb, var(--text-secondary) 55%, transparent);
   }
 
   #site-nav a.nav-link--external:hover {
-    color: var(--text-secondary);
+    color: color-mix(in srgb, var(--text-secondary) 80%, transparent);
   }
 </style>
 

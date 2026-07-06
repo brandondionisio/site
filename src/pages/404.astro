@@ -6,37 +6,37 @@ import MysteryButton from "../components/mysteryButton/MysteryButton.astro";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead
-			title="404 Oh No"
-			description="The page you are looking for does not exist."
-		/>
-	</head>
-	<body>
-		<Nav currentPath={Astro.url.pathname} />
-		<MysteryButton />
-		<main
-			class="w-full max-w-[760px] mx-auto min-h-[100vh] flex items-center justify-center"
-		>
-			<section class="text-center dark:bg-zinc-900/70">
-				<p
-					class="m-0 mb-3 font-mono text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]"
-				>
-					404
-				</p>
-				<h1 class="m-0 text-3xl font-bold text-primary">Oopsie daisy!</h1>
-				<p class="mx-auto mt-4 mb-0 max-w-[52ch] text-secondary">
-					I don't have this page yet.
-				</p>
-				<div class="mt-8 flex justify-center">
-					<a
-						href="/"
-						class="inline-flex items-center rounded-md border border-zinc-400 px-4 py-2 text-sm font-semibold no-underline transition-opacity hover:opacity-80 dark:border-zinc-500"
-					>
-						Go home
-					</a>
-				</div>
-			</section>
-		</main>
-	</body>
+  <head>
+    <BaseHead
+      title="404 Oh No"
+      description="The page you are looking for does not exist."
+    />
+  </head>
+  <body>
+    <Nav currentPath={Astro.url.pathname} />
+    <!-- <MysteryButton /> -->
+    <main
+      class="w-full max-w-[760px] mx-auto min-h-[100vh] flex items-center justify-center"
+    >
+      <section class="text-center dark:bg-zinc-900/70">
+        <p
+          class="m-0 mb-3 font-mono text-sm font-semibold uppercase tracking-[0.18em] text-[var(--accent)]"
+        >
+          404
+        </p>
+        <h1 class="m-0 text-3xl font-bold text-primary">Oopsie daisy!</h1>
+        <p class="mx-auto mt-4 mb-0 max-w-[52ch] text-secondary">
+          I don't have this page yet.
+        </p>
+        <div class="mt-8 flex justify-center">
+          <a
+            href="/"
+            class="inline-flex items-center rounded-md border border-zinc-400 px-4 py-2 text-sm font-semibold no-underline transition-opacity hover:opacity-80 dark:border-zinc-500"
+          >
+            Go home
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>

@@ -9,17 +9,17 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Nav currentPath={Astro.url.pathname} />
-		<MysteryButton />
-		<main class="w-full max-w-[760px] mx-auto px-6 py-10 pb-16 min-h-[60vh]">
-			<Hero />
-			<section class="mt-40 [&_p]:mb-4">
-				<Content />
-			</section>
-		</main>
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Nav currentPath={Astro.url.pathname} />
+    <!-- <MysteryButton /> -->
+    <main class="w-full max-w-[760px] mx-auto px-6 py-10 pb-16 min-h-[60vh]">
+      <Hero />
+      <section class="mt-40 [&_p]:mb-4">
+        <Content />
+      </section>
+    </main>
+  </body>
 </html>
