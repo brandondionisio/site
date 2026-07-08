@@ -387,6 +387,11 @@
   },
   {
     "date": "2026-06-06",
+    "src": "/photos/2026-06-06.jpg",
+    "alt": "Very sad sight"
+  },
+  {
+    "date": "2026-06-06",
     "src": "/photos/2026-06-06.jpg"
   },
   {
@@ -516,5 +521,9 @@
     "date": "2026-07-05",
     "src": "/photos/2026-07-05.jpg",
     "alt": "Love island and Codenames"
+  },
+  {
+    "date": "2026-07-07",
+    "src": "/photos/2026-07-07.jpg"
   }
 ]
