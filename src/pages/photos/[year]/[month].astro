@@ -5,6 +5,7 @@ import { SITE_TITLE } from "../../../consts";
 import {
   getCalendarMonth,
   getCalendarThumbSrc,
+  getEventSegmentsForMonth,
   getPhotosByDate,
   getMonthsWithPhotos,
   getPreviousNextMonth,
@@ -24,7 +25,38 @@ const month = Number(monthStr);
 
 const calendar = getCalendarMonth(year, month);
 const photosByDate = getPhotosByDate();
+const eventSegments = getEventSegmentsForMonth(year, month);
 const { prev, next } = getPreviousNextMonth(year, month);
+
+const segmentsByWeek = calendar.weeks.map((_, weekIdx) =>
+  eventSegments.filter((seg) => seg.weekIndex === weekIdx),
+);
+const cellEventIndex = calendar.weeks.map((week, weekIdx) =>
+  Array.from({ length: 7 }, (_, col) => {
+    const seg = segmentsByWeek[weekIdx].find(
+      (s) => col >= s.startCol && col <= s.endCol,
+    );
+    return seg?.eventIndex ?? -1;
+  }),
+);
+const firstWeekByEvent = new Map<number, number>();
+const lastWeekByEvent = new Map<number, number>();
+for (const seg of eventSegments) {
+  const first = firstWeekByEvent.get(seg.eventIndex);
+  if (first === undefined || seg.weekIndex < first) {
+    firstWeekByEvent.set(seg.eventIndex, seg.weekIndex);
+  }
+  const last = lastWeekByEvent.get(seg.eventIndex);
+  if (last === undefined || seg.weekIndex > last) {
+    lastWeekByEvent.set(seg.eventIndex, seg.weekIndex);
+  }
+}
+const eventHoverCss = [...new Set(eventSegments.map((seg) => seg.eventIndex))]
+  .flatMap((i) => [
+    `.photo-calendar:has(.photo-event-cell--${i}:hover) .photo-event-segment--${i} .photo-event-banner`,
+    `.photo-calendar:has(.photo-event-cell--${i}:focus-within) .photo-event-segment--${i} .photo-event-banner`,
+  ])
+  .join(",\n");
 ---
 
 <!doctype html>
@@ -112,61 +144,134 @@ const { prev, next } = getPreviousNextMonth(year, month);
         </div>
 
         <div
-          class="grid grid-cols-7 overflow-hidden border border-[var(--border-subtle)] w-full max-w-[360px] sm:max-w-none mx-auto"
+          class="photo-calendar border border-[var(--border-subtle)] w-full max-w-[360px] sm:max-w-none mx-auto"
         >
+          <div class="grid grid-cols-7">
+            {
+              calendar.dayLabels.map((label, i) => (
+                <div
+                  class={`bg-[var(--page-bg-tertiary)] p-2 text-center text-xs font-semibold text-primary border-b border-[var(--border-subtle)] ${i < 6 ? "border-r" : ""}`}
+                >
+                  {label}
+                </div>
+              ))
+            }
+          </div>
           {
-            calendar.dayLabels.map((label, i) => (
-              <div
-                class={`bg-[var(--page-bg-tertiary)] p-2 text-center text-xs font-semibold text-primary border-b border-[var(--border-subtle)] ${i < 6 ? "border-r" : ""}`}
-              >
-                {label}
-              </div>
-            ))
-          }
-          {
-            calendar.weeks.map((week, weekIdx) =>
-              week.map((cell, cellIdx) => {
-                const photo = cell ? photosByDate.get(cell.dateStr) : null;
-                const thumbSrc = photo ? getCalendarThumbSrc(photo.src) : null;
-                const isLastRow = weekIdx === calendar.weeks.length - 1;
-                const isLastCol = cellIdx === 6;
-                return (
-                  <div
-                    class={`aspect-square bg-[var(--page-bg-secondary)] min-w-0 flex items-center justify-center overflow-hidden border-[var(--border-subtle)] ${!isLastCol ? "border-r" : ""} ${!isLastRow ? "border-b" : ""}`}
-                  >
-                    {cell && photo ? (
-                      <a
-                        href={`/photos/${year}/${month}/${cell.day}`}
-                        class="block w-full h-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+            calendar.weeks.map((week, weekIdx) => {
+              const isLastRow = weekIdx === calendar.weeks.length - 1;
+              const weekSegments = segmentsByWeek[weekIdx];
+              const weekCellEvents = cellEventIndex[weekIdx];
+              return (
+                <div class="photo-week relative grid grid-cols-7">
+                  {week.map((cell, cellIdx) => {
+                    const photo = cell ? photosByDate.get(cell.dateStr) : null;
+                    const thumbSrc = photo
+                      ? getCalendarThumbSrc(photo.src)
+                      : null;
+                    const isLastCol = cellIdx === 6;
+                    const eventIdx = weekCellEvents[cellIdx];
+                    return (
+                      <div
+                        class={`relative aspect-square bg-[var(--page-bg-secondary)] min-w-0 flex items-center justify-center overflow-hidden border-[var(--border-subtle)] ${!isLastCol ? "border-r" : ""} ${!isLastRow ? "border-b" : ""} ${eventIdx !== -1 ? `photo-event-cell photo-event-cell--${eventIdx}` : ""}`}
                       >
-                        {thumbSrc ? (
-                          <img
-                            src={thumbSrc}
-                            loading="lazy"
-                            decoding="async"
-                            alt={photo.alt ?? `Photo for ${cell.dateStr}`}
-                            class="w-full h-full object-cover"
-                          />
-                        ) : (
-                          <img
-                            src={photo.src}
-                            loading="lazy"
-                            decoding="async"
-                            alt={photo.alt ?? `Photo for ${cell.dateStr}`}
-                            class="w-full h-full object-cover"
+                        {eventIdx !== -1 && (
+                          <div
+                            class="absolute top-0 left-0 right-0 z-10 h-[3px] bg-[var(--accent)] pointer-events-none"
+                            aria-hidden="true"
                           />
                         )}
-                      </a>
-                    ) : cell ? (
-                      <span class="text-xs text-secondary/60">{cell.day}</span>
-                    ) : null}
-                  </div>
-                );
-              }),
-            )
+                        {cell && photo ? (
+                          <a
+                            href={`/photos/${year}/${month}/${cell.day}`}
+                            class="block w-full h-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+                          >
+                            {thumbSrc ? (
+                              <img
+                                src={thumbSrc}
+                                loading="lazy"
+                                decoding="async"
+                                alt={photo.alt ?? `Photo for ${cell.dateStr}`}
+                                class="w-full h-full object-cover"
+                              />
+                            ) : (
+                              <img
+                                src={photo.src}
+                                loading="lazy"
+                                decoding="async"
+                                alt={photo.alt ?? `Photo for ${cell.dateStr}`}
+                                class="w-full h-full object-cover"
+                              />
+                            )}
+                          </a>
+                        ) : cell ? (
+                          <span class="text-xs text-secondary/60">
+                            {cell.day}
+                          </span>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+                  {weekSegments.map((seg) => {
+                    const colSpan = seg.endCol - seg.startCol + 1;
+                    const isFirstWeek =
+                      firstWeekByEvent.get(seg.eventIndex) === weekIdx;
+                    const isLastWeek =
+                      lastWeekByEvent.get(seg.eventIndex) === weekIdx;
+                    const spansMultipleWeeks =
+                      firstWeekByEvent.get(seg.eventIndex) !==
+                      lastWeekByEvent.get(seg.eventIndex);
+                    const bannerRadius = !spansMultipleWeeks
+                      ? "rounded-t-md"
+                      : isFirstWeek
+                        ? "rounded-tl-md"
+                        : isLastWeek
+                          ? "rounded-tr-md"
+                          : "";
+                    return (
+                      <div
+                        class={`photo-event-segment photo-event-segment--${seg.eventIndex} absolute top-0 z-20 pointer-events-none`}
+                        style={`left: ${(seg.startCol / 7) * 100}%; width: ${(colSpan / 7) * 100}%;`}
+                      >
+                        <div class="relative w-full">
+                          <div
+                            class={`photo-event-banner absolute bottom-full mb-1 left-0 right-px flex items-center gap-1 ${bannerRadius} bg-[var(--accent)] px-2 py-[3px] min-h-[18px] text-[11px] leading-tight font-mono font-medium text-white opacity-0 transition-opacity duration-150`}
+                          >
+                            {isFirstWeek && (
+                              <>
+                                <svg
+                                  class="h-3 w-3 shrink-0"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  aria-hidden="true"
+                                >
+                                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                  <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                {seg.name}
+                              </>
+                            )}
+                          </div>
+                          <div class="h-[3px] w-full" aria-hidden="true" />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })
           }
         </div>
       </section>
     </main>
   </body>
 </html>
+
+<style
+  is:global
+  set:html={eventHoverCss ? `${eventHoverCss} { opacity: 1; }` : ""}
+></style>
