@@ -6,7 +6,7 @@ export const SITE_DESCRIPTION =
 
 export const AUTHOR_NAME = "Brandon";
 export const AUTHOR_BIO =
-  'I recently graduated from Tufts University with degrees in Computer Science and Cognitive Brain Science. I work at <a href="https://ibm.com" target="_blank" rel="noopener noreferrer">Different Health</a> and will be joining <a href="https://differenthealth.com" target="_blank" rel="noopener noreferrer">IBM</a> this August. I enjoy soccer, skiing, and playing word games like the <a href="https://minutecryptic.com" target="_blank" rel="noopener noreferrer">Minute Cryptic</a>, Word Hunt, and NYT Crossplay.';
+  'I recently graduated from Tufts University with degrees in Computer Science and Cognitive Brain Science. I work at <a href="https://ibm.com" target="_blank" rel="noopener noreferrer">IBM</a>, and enjoy soccer, skiing, and playing word games like the <a href="https://minutecryptic.com" target="_blank" rel="noopener noreferrer">Minute Cryptic</a>, Word Hunt, and NYT Crossplay.';
 export const SOCIAL_LINKS = [
   {
     name: "LinkedIn",
