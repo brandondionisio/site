@@ -81,8 +81,8 @@ const byYear = getConcertsByYear();
                   const hasImage = Boolean(concert.image);
                   const lightText = concert.textColor === "white";
                   return (
-                    <li class="concert-ticket-wrap" data-concert-tilt>
-                      <article class="concert-ticket flex items-stretch min-h-[7.5rem] sm:min-h-[8.5rem] bg-[var(--page-bg-secondary)]">
+                    <li class="concert-ticket-wrap">
+                      <article class="concert-ticket relative flex items-stretch min-h-[7.5rem] sm:min-h-[8.5rem] bg-[var(--page-bg-secondary)] overflow-hidden">
                         <div class="flex flex-col items-center justify-center shrink-0 w-[5.25rem] sm:w-24 px-2 py-5 bg-[var(--page-bg-secondary)]">
                           <span class="text-[11px] font-medium tracking-wider text-secondary uppercase leading-none">
                             {month}
@@ -168,12 +168,7 @@ const byYear = getConcertsByYear();
 
 <style>
   .concert-ticket-wrap {
-    --tilt-x: 0deg;
-    --tilt-y: 0deg;
-    --tilt-scale: 1;
-    transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
-      scale(var(--tilt-scale));
-    transform-style: preserve-3d;
+    transform: rotate(0deg) translateY(0);
     transition:
       transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
       filter 0.35s ease;
@@ -184,18 +179,17 @@ const byYear = getConcertsByYear();
         0 0 1.5px color-mix(in srgb, var(--text-primary) 18%, transparent)
       )
       drop-shadow(0 2px 4px rgb(0 0 0 / 0.06));
-    will-change: transform;
   }
 
-  .concert-ticket-wrap.is-tilting {
-    transition: filter 0.35s ease;
+  .concert-ticket-wrap:hover {
+    transform: rotate(-1.5deg) translateY(-3px);
     filter: drop-shadow(
         0 0 0.8px color-mix(in srgb, var(--text-primary) 32%, transparent)
       )
       drop-shadow(
         0 0 1.5px color-mix(in srgb, var(--text-primary) 20%, transparent)
       )
-      drop-shadow(0 10px 18px rgb(0 0 0 / 0.12));
+      drop-shadow(0 8px 16px rgb(0 0 0 / 0.1));
   }
 
   .concert-ticket {
@@ -213,57 +207,10 @@ const byYear = getConcertsByYear();
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .concert-ticket-wrap {
-      transition: none;
+    .concert-ticket-wrap,
+    .concert-ticket-wrap:hover {
       transform: none;
+      transition: none;
     }
   }
 </style>
-
-<script>
-  // @ts-nocheck
-  let tiltAbort = null;
-
-  function initConcertTilt() {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    tiltAbort?.abort();
-    const ac = new AbortController();
-    tiltAbort = ac;
-    const sig = { signal: ac.signal };
-
-    const maxTilt = 7;
-
-    document.querySelectorAll("[data-concert-tilt]").forEach((card) => {
-      card.addEventListener(
-        "pointermove",
-        (e) => {
-          const rect = card.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width;
-          const y = (e.clientY - rect.top) / rect.height;
-          const tiltY = (x - 0.5) * maxTilt * 2;
-          const tiltX = (0.5 - y) * maxTilt * 2;
-          card.classList.add("is-tilting");
-          card.style.setProperty("--tilt-x", `${tiltX.toFixed(2)}deg`);
-          card.style.setProperty("--tilt-y", `${tiltY.toFixed(2)}deg`);
-          card.style.setProperty("--tilt-scale", "1.02");
-        },
-        sig,
-      );
-
-      card.addEventListener(
-        "pointerleave",
-        () => {
-          card.classList.remove("is-tilting");
-          card.style.setProperty("--tilt-x", "0deg");
-          card.style.setProperty("--tilt-y", "0deg");
-          card.style.setProperty("--tilt-scale", "1");
-        },
-        sig,
-      );
-    });
-  }
-
-  initConcertTilt();
-  document.addEventListener("astro:page-load", initConcertTilt);
-</script>
