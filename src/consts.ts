@@ -1,6 +1,7 @@
 export const SITE_TITLE = "Brandon Dionisio";
 export const BLOG_TITLE = "Brandon Dionisio's Blog";
 export const PHOTOS_TITLE = "Brandon Dionisio's Photos";
+export const CONCERTS_TITLE = "Concerts";
 export const SITE_DESCRIPTION =
   "Welcome in! Here you can find some of my projects and blog posts.";
 

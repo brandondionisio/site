@@ -1,0 +1,107 @@
+[
+  {
+    "artist": "The Weeknd",
+    "date": "2022-07-16",
+    "venue": "MetLife Stadium",
+    "city": "East Rutherford, NJ",
+    "openers": ["KAYTRANADA", "Mike Dean"],
+    "image": "TheWeeknd.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "Flo Rida",
+    "date": "2023-04-29",
+    "venue": "Tufts University",
+    "city": "Medford, MA",
+    "openers": ["Charlie Curtis-Beard", "Cheat Codes"],
+    "image": "FloRida.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "Redveil",
+    "date": "2023-05-24",
+    "venue": "Music Hall of Williamsburg",
+    "city": "Brooklyn, NY",
+    "openers": [],
+    "image": "Redveil.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "A Boogie Wit da Hoodie",
+    "date": "2024-05-08",
+    "venue": "Cornell University",
+    "city": "Ithaca, NY",
+    "openers": ["Flo Rida"],
+    "image": "ABoogie.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "Tinashe",
+    "date": "2025-04-26",
+    "venue": "Tufts University",
+    "city": "Medford, MA",
+    "openers": ["Quinn XCII", "Hot Chelle Rae"],
+    "image": "Tinashe.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "Tyler, The Creator",
+    "date": "2025-06-06",
+    "venue": "Gov Ball",
+    "city": "New York, NY",
+    "openers": [
+      "JPEGMAFIA",
+      "T-Pain",
+      "Tyla",
+      "Role Model",
+      "BigXthaPlug",
+      "Isabel LaRosa"
+    ],
+    "image": "JPEG.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "Tyler, The Creator",
+    "date": "2025-07-28",
+    "venue": "Prudential Center",
+    "city": "Newark, NJ",
+    "openers": ["Lil Yachty", "Paris Texas"],
+    "image": "Tyler.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "Stereolab",
+    "date": "2025-09-26",
+    "venue": "Royale",
+    "city": "Boston, MA",
+    "openers": [],
+    "image": "Stereolab.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "Zara Larsson",
+    "date": "2026-04-25",
+    "venue": "Tufts University",
+    "city": "Medford, MA",
+    "openers": ["Grouplove"],
+    "image": "Zara.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "A$AP Rocky",
+    "date": "2026-06-2",
+    "venue": "TD Garden",
+    "city": "Boston, MA",
+    "openers": [],
+    "image": "A$AP.jpg",
+    "textColor": "white"
+  },
+  {
+    "artist": "Yeat",
+    "date": "2026-09-18",
+    "venue": "Capital One City Parks Foundation SummerStage",
+    "city": "New York, NY",
+    "openers": [],
+    "textColor": "black"
+  }
+]
