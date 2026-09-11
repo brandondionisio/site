@@ -821,6 +821,11 @@
     "alt": "Card trick"
   },
   {
+    "date": "2026-09-06",
+    "src": "/photos/2026-09-06.jpg",
+    "alt": "Locked in"
+  },
+  {
     "date": "2026-09-07",
     "src": "/photos/2026-09-07.jpg",
     "alt": "Courts are stacked"
@@ -829,5 +834,9 @@
     "date": "2026-09-08",
     "src": "/photos/2026-09-08.jpg",
     "alt": "Post run club"
+  },
+  {
+    "date": "2026-09-09",
+    "src": "/photos/2026-09-09.jpg"
   }
 ]
