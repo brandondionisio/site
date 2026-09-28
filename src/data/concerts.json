@@ -101,7 +101,8 @@
     "date": "2026-09-18",
     "venue": "Capital One City Parks Foundation SummerStage",
     "city": "New York, NY",
-    "openers": [],
-    "textColor": "black"
+    "openers": ["Glokk40Spaz"],
+    "image": "Yeat.jpg",
+    "textColor": "white"
   }
 ]
