@@ -49,11 +49,11 @@ export function getMonthsWithPhotos(): { year: number; month: number }[] {
     set.add(`${y}-${m}`);
   }
   return Array.from(set)
-    .sort()
     .map((key) => {
       const [y, m] = key.split("-").map(Number);
       return { year: y, month: m };
-    });
+    })
+    .sort((a, b) => a.year - b.year || a.month - b.month);
 }
 
 export function getPreviousNextMonth(
